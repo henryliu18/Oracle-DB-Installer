@@ -1,10 +1,5 @@
 #!/usr/bin/bash
 
-#
-# Tested CentOS 7
-#
-#
-
 # Source env
 if [ -f `dirname $0`/env ]; then
  . `dirname $0`/env
@@ -20,5 +15,11 @@ elif [ "$O_VER" = "12c" ]; then
   bash 12c/linux_x64.sh
 elif [ "$O_VER" = "11.2" ]; then
   bash 11.2/linux_x64.sh
+elif [ "$O_VER" = "10.2" ]; then
+  bash 10.2/linux_x64.sh
+elif [ "$O_VER" = "9.2" ]; then
+  bash 9.2/linux_x64.sh
+elif [ "$O_VER" = "8.1.7" ]; then
+  bash 8.1.7/linux.sh
 fi
 
