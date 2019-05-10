@@ -6,11 +6,11 @@
 #
 
 # Source env
-if [ -f `dirname $0`/env ]; then
- . `dirname $0`/env
+if [ -f env ]; then
+ . env
 else
- echo "env file not found in `dirname $0`, run setup to create env file"
- echo "cd `dirname $0`;bash `dirname $0`/setup env"
+ echo "env file not found, run setup to create env file"
+ echo "./setup env"
  exit 1
 fi
 
