@@ -49,24 +49,22 @@ elif [ "$O_VER" = "10.2" ]; then
    exit 1
   fi
 elif [ "$O_VER" = "9.2" ]; then
-  read -p "Oracle Database zip file pattern [/tmp/amd64_db_9204_Disk*.cpio.gz]: " ORACLE_SW1
-  ORACLE_SW1=${ORACLE_SW1:-/tmp/amd64_db_9204_Disk*.cpio.gz}
-  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk1.cpio]: " ORACLE_SW2
-  ORACLE_SW2=${ORACLE_SW2:-/tmp/10201_database_linux_x86_64.cpio}
+  read -p "Oracle Database gz file [/tmp/amd64_db_9204_Disk1.cpio.gz]: " ORACLE_SW1
+  ORACLE_SW1=${ORACLE_SW1:-/tmp/amd64_db_9204_Disk1.cpio.gz}
+  if [ ! -f $ORACLE_SW1 ]; then
+   echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
+   exit 1
+  fi
+  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk2.cpio.gz]: " ORACLE_SW2
+  ORACLE_SW2=${ORACLE_SW2:-/tmp/amd64_db_9204_Disk2.cpio.gz}
   if [ ! -f $ORACLE_SW2 ]; then
    echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
    exit 1
   fi
-  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk2.cpio]: " ORACLE_SW3
-  ORACLE_SW3=${ORACLE_SW3:-/tmp/10201_database_linux_x86_64.cpio}
+  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk3.cpio.gz]: " ORACLE_SW3
+  ORACLE_SW3=${ORACLE_SW3:-/tmp/amd64_db_9204_Disk3.cpio.gz}
   if [ ! -f $ORACLE_SW3 ]; then
    echo -e "${RED}$ORACLE_SW3 not found, exiting${OFF}"
-   exit 1
-  fi
-  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk3.cpio]: " ORACLE_SW4
-  ORACLE_SW4=${ORACLE_SW4:-/tmp/10201_database_linux_x86_64.cpio}
-  if [ ! -f $ORACLE_SW4 ]; then
-   echo -e "${RED}$ORACLE_SW4 not found, exiting${OFF}"
    exit 1
   fi
 elif [ "$O_VER" = "8.1.7" ]; then
