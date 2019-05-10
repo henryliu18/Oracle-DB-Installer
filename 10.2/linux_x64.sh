@@ -183,7 +183,7 @@ echo "rm -rf $ORACLE_SW_STG
 mkdir $ORACLE_SW_STG
 cd $ORACLE_SW_STG
 gunzip $ORACLE_SW1
-cpio -idmv < $ORACLE_SW2
+cpio -idmv < "${ORACLE_SW1%.*}"
 #runInstaller SILENT
 $ORACLE_SW_STG/database/runInstaller -silent -ignoreSysPrereqs \
 FROM_LOCATION=$ORACLE_SW_STG/database/stage/products.xml \
