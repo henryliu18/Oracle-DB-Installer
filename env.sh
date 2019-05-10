@@ -20,11 +20,27 @@ O_VER=${O_VER:-18c}
 
 clear
 echo "Software (zip file) location"
-read -p "Oracle Database zip file [/tmp/LINUX.X64_180000_db_home.zip]: " ORACLE_SW
-ORACLE_SW=${ORACLE_SW:-/tmp/LINUX.X64_180000_db_home.zip}
-if [ ! -f $ORACLE_SW ]; then
- echo -e "${RED}$ORACLE_SW not found, exiting${OFF}"
- exit 1
+
+if [ "$O_VER" = "18c" ]; then
+  read -p "Oracle Database zip file [/tmp/LINUX.X64_180000_db_home.zip]: " ORACLE_SW
+  ORACLE_SW=${ORACLE_SW:-/tmp/LINUX.X64_180000_db_home.zip}
+  if [ ! -f $ORACLE_SW ]; then
+   echo -e "${RED}$ORACLE_SW not found, exiting${OFF}"
+   exit 1
+  fi
+elif [ "$O_VER" = "11.2" ]; then
+  read -p "Oracle Database zip file [/tmp/p13390677_112040_Linux-x86-64_1of7.zip]: " ORACLE_SW1
+  ORACLE_SW1=${ORACLE_SW1:-/tmp/p13390677_112040_Linux-x86-64_1of7.zip}
+  if [ ! -f $ORACLE_SW1 ]; then
+   echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
+   exit 1
+  fi
+  read -p "Oracle Database zip file [/tmp/p13390677_112040_Linux-x86-64_2of7.zip]: " ORACLE_SW2
+  ORACLE_SW2=${ORACLE_SW2:-/tmp/p13390677_112040_Linux-x86-64_1of7.zip}
+  if [ ! -f $ORACLE_SW2 ]; then
+   echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
+   exit 1
+  fi
 fi
 
 clear
