@@ -78,7 +78,7 @@ read -p "Location of auto generated scripts during installation [/tmp]: " SCRIPT
 SCRIPT_DIR=${SCRIPT_DIR:-/tmp}
 
 if [ "$O_VER" = "11.2" ]; then
-  read -p "Location of staging directory [/tmp]: " ORACLE112_SW_STG
+  read -p "Location of staging directory [/tmp/ora11g]: " ORACLE112_SW_STG
   ORACLE112_SW_STG=${ORACLE112_SW_STG:-/tmp/ora11g}
 fi
 
@@ -107,6 +107,7 @@ ORACLE_DB=${ORACLE_DB}
 ORACLE18_SW=${ORACLE18_SW}
 ORACLE112_SW1=${ORACLE112_SW1}
 ORACLE112_SW2=${ORACLE112_SW2}
+ORACLE112_SW_STG=${ORACLE112_SW_STG}
 SCRIPT_DIR=${SCRIPT_DIR}
 ORATAB=${ORATAB}
 PDB=${PDB}
