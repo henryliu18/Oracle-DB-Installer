@@ -1,5 +1,5 @@
 
-#!/usr/bin/bash
+#!/bin/bash
 
 #
 # Tested CentOS Linux release 7.6.1810 (Core)
