@@ -6,17 +6,6 @@
 #
 #
 
-NIC=ens33
-O_USER=oracle
-O_PASS=oracle123
-ORACLE_APP_ROOT=/opt/app
-ORACLE_BASE=$ORACLE_APP_ROOT/oracle
-ORACLE_HOME=/opt/app/oracle/product/11.2.0.4/db_1
-ORACLE_DB=/ora/db001
-ORACLE_SW1=/tmp/p13390677_112040_Linux-x86-64_1of7.zip
-ORACLE_SW2=/tmp/p13390677_112040_Linux-x86-64_2of7.zip
-ORACLE_SW_STG=/tmp/ora11g
-INST_ORACLE_SW_SHELL=/tmp/inst_ora_sw.sh
 
 #/etc/hosts configuration
 echo "`ip -f inet addr show $NIC | grep -Po 'inet \K[\d.]+'` `hostname`" >> /etc/hosts
@@ -167,13 +156,13 @@ oracle.install.db.InstallEdition=EE \
 oracle.install.db.isCustomInstall=false \
 oracle.install.db.DBA_GROUP=dba \
 oracle.install.db.OPER_GROUP=dba \
-DECLINE_SECURITY_UPDATES=true" > $INST_ORACLE_SW_SHELL
+DECLINE_SECURITY_UPDATES=true" > ${SCRIPT_DIR}/inst_ora_sw
 
 # Adding execute permission to all users
-chmod a+x $INST_ORACLE_SW_SHELL
+chmod a+x ${SCRIPT_DIR}/inst_ora_sw
 
 # unzip; runInstaller as oracle
-su - $O_USER -c $INST_ORACLE_SW_SHELL
+su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 
 # execute last 2 scripts as root
 $ORACLE_APP_ROOT/oraInventory/orainstRoot.sh
