@@ -7,8 +7,8 @@ OFF='\033[0m'
 clear
 echo "Networking"
 ifconfig -a|grep 'inet\|flags'
-read -p "Servicable network interface [eth0]: " NIC
-NIC=${NIC:-eth0}
+read -p "Servicable network interface [enp0s8]: " NIC
+NIC=${NIC:-enp0s8}
 ifconfig $NIC
 if [ $? -ne 0 ]; then
  echo -e "${RED}$NIC not found, exiting${OFF}"
