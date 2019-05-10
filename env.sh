@@ -57,8 +57,10 @@ SYS_PASS=${SYS_PASS:-SysPassword1}
 read -p "(DB) SYSTEM password [SysPassword1]: " SYSTEM_PASS
 SYSTEM_PASS=${SYSTEM_PASS:-SysPassword1}
 
-read -p "(DB) PDBADMIN password [PdbPassword1]: " PDBADMIN_PASS
-PDBADMIN_PASS=${PDBADMIN_PASS:-PdbPassword1}
+if [ "$O_VER" = "18c" ] || [ "$O_VER" = "12c" ]; then
+  read -p "(DB) PDBADMIN password [PdbPassword1]: " PDBADMIN_PASS
+  PDBADMIN_PASS=${PDBADMIN_PASS:-PdbPassword1}
+fi
 
 clear
 echo "Installation location"
@@ -90,8 +92,10 @@ echo "Oracle Database"
 read -p "\$ORACLE_SID - Database database name or container instance name for apex [cdb1]: " CDB
 CDB=${CDB:-cdb1}
 
-read -p "Database container name for apex [pdb1]: " PDB
-PDB=${PDB:-pdb1}
+if [ "$O_VER" = "18c" ] || [ "$O_VER" = "12c" ]; then
+  read -p "Database container name for apex [pdb1]: " PDB
+  PDB=${PDB:-pdb1}
+fi
 
 echo "NIC=${NIC}
 O_USER=${O_USER}
