@@ -1,10 +1,10 @@
 # Oracle-database-installation
 Your Oracle database automated installer from 8i to 18c
 
-1. <b>setup env</b></ br>
-env - collect inputs and put in env file</ br>
+1. setup env
+env - collect inputs and put in env file
 
-2. <b>setup sw|db|clean</b></ br>
-sw - install software only</ br>
-db - install software, configure listener and create database</ br>
-clean - shutdown db and listener, delete everything like a boss</ br>
+2. setup sw|db|clean
+sw - install software only
+db - install software, configure listener and create database
+clean - shutdown db and listener, delete everything like a boss
