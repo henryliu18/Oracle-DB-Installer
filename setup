@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+if [ "$1" = "env" ]; then
+  bash `dirname $0`/env.sh
+elif [ "$1" = "sw" ]; then
+  bash `dirname $0`/linux_x64.sh
+elif [ "$1" = "db" ]; then
+  command bash `dirname $0`/linux_x64.sh && \
+  command bash `dirname $0`/netca.sh && \
+  command bash `dirname $0`/dbca.sh || exit
+elif [ "$1" = "clean" ]; then
+  command bash `dirname $0`/linux_x64_clean.sh || exit
+else
+  echo "setup 1.01"
+  echo "Usage: setup [env|sw|db|clean]"
+  echo "  env           Collect user inputs and create env file"
+  echo "  sw            Install Oracle softwrae only"
+  echo "  db            Install Oracle software, configure Oracle Listener and create a database"
+  echo "  clean         Delete Oracle software, account, groups"
+  exit 2
+fi
+
