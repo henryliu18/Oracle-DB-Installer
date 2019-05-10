@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # Source env
 if [ -f `dirname $0`/env ]; then
