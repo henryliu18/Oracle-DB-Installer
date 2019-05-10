@@ -29,14 +29,14 @@ if [ "$O_VER" = "18c" ]; then
    exit 1
   fi
 elif [ "$O_VER" = "11.2" ]; then
-  read -p "Oracle Database zip file [/tmp/p13390677_112040_Linux-x86-64_1of7.zip]: " ORACLE_SW1
-  ORACLE_SW1=${ORACLE_SW1:-/tmp/p13390677_112040_Linux-x86-64_1of7.zip}
+  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_1of2.zip]: " ORACLE_SW1
+  ORACLE_SW1=${ORACLE_SW1:-/tmp/linux.x64_11gR2_database_1of2.zip}
   if [ ! -f $ORACLE_SW1 ]; then
    echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
    exit 1
   fi
-  read -p "Oracle Database zip file [/tmp/p13390677_112040_Linux-x86-64_2of7.zip]: " ORACLE_SW2
-  ORACLE_SW2=${ORACLE_SW2:-/tmp/p13390677_112040_Linux-x86-64_1of7.zip}
+  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_2of2.zip]: " ORACLE_SW2
+  ORACLE_SW2=${ORACLE_SW2:-/tmp/linux.x64_11gR2_database_2of2.zip}
   if [ ! -f $ORACLE_SW2 ]; then
    echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
    exit 1
