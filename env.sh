@@ -48,12 +48,6 @@ elif [ "$O_VER" = "10.2" ]; then
    echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
    exit 1
   fi
-  read -p "Oracle Database cpio file [/tmp/10201_database_linux_x86_64.cpio]: " ORACLE_SW2
-  ORACLE_SW2=${ORACLE_SW2:-/tmp/10201_database_linux_x86_64.cpio}
-  if [ ! -f $ORACLE_SW2 ]; then
-   echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
-   exit 1
-  fi
 elif [ "$O_VER" = "9.2" ]; then
   read -p "Oracle Database zip file pattern [/tmp/amd64_db_9204_Disk*.cpio.gz]: " ORACLE_SW1
   ORACLE_SW1=${ORACLE_SW1:-/tmp/amd64_db_9204_Disk*.cpio.gz}
