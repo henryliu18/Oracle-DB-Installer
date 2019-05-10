@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 #
-# Tested CentOS Linux release 7.6.1810 (Core)
-# Database creation, run as oracle user
+# Tested CentOS 7
+# Database creation, run as root user
 #
 
 # Source env
@@ -13,7 +13,14 @@ else
  exit 1
 fi
 
-dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname $ORACLE_SID -sid $ORACLE_SID -responseFile NO_VALUE -characterSet AL32UTF8 -memoryPercentage 10 -emConfiguration NONE -datafiledestination /ora/db001 -sysPassword SysPassword1 -systemPassword SysPassword1 -dbsnmpPassword SysPassword1 -sysmanPassword SysPassword1
+echo "dbca -silent -createDatabase -templateName General_Purpose.dbc \
+-gdbname $ORACLE_SID -sid $ORACLE_SID -responseFile NO_VALUE -characterSet AL32UTF8 \
+-memoryPercentage 10 -emConfiguration NONE -datafiledestination $ORACLE_DB \
+-sysPassword $SYS_PASS -systemPassword $SYSTEM_PASS \
+-dbsnmpPassword $SYSTEM_PASS -sysmanPassword $SYSTEM_PASS" > ${SCRIPT_DIR}/run_dbca
+chmod a+x ${SCRIPT_DIR}/run_dbca
+su - $O_USER -c ${SCRIPT_DIR}/run_dbca
+rm -f ${SCRIPT_DIR}/run_dbca
 
 # Change auto start flag from N to Y
 sed -e "/$CDB/s/^/#/g" $ORATAB > ${SCRIPT_DIR}/tmporatab
