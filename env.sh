@@ -55,13 +55,13 @@ elif [ "$O_VER" = "9.2" ]; then
    echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
    exit 1
   fi
-  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk2.cpio.gz]: " ORACLE_SW2
+  read -p "Oracle Database gz file [/tmp/amd64_db_9204_Disk2.cpio.gz]: " ORACLE_SW2
   ORACLE_SW2=${ORACLE_SW2:-/tmp/amd64_db_9204_Disk2.cpio.gz}
   if [ ! -f $ORACLE_SW2 ]; then
    echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
    exit 1
   fi
-  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk3.cpio.gz]: " ORACLE_SW3
+  read -p "Oracle Database gz file [/tmp/amd64_db_9204_Disk3.cpio.gz]: " ORACLE_SW3
   ORACLE_SW3=${ORACLE_SW3:-/tmp/amd64_db_9204_Disk3.cpio.gz}
   if [ ! -f $ORACLE_SW3 ]; then
    echo -e "${RED}$ORACLE_SW3 not found, exiting${OFF}"
