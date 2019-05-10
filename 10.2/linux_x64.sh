@@ -185,7 +185,7 @@ cd $ORACLE_SW_STG
 gunzip $ORACLE_SW1
 cpio -idmv < "${ORACLE_SW1%.*}"
 #runInstaller SILENT
-$ORACLE_SW_STG/database/runInstaller -silent -ignoreSysPrereqs \
+$ORACLE_SW_STG/database/runInstaller -waitforcompletion -silent -ignoreSysPrereqs \
 FROM_LOCATION=$ORACLE_SW_STG/database/stage/products.xml \
 oracle.install.option=INSTALL_DB_SWONLY \
 UNIX_GROUP_NAME=oinstall \
