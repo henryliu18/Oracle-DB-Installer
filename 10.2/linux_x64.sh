@@ -5,16 +5,13 @@
 # Database software installation, run as root user
 #
 
-NIC=eth0
-O_USER=oracle
-O_PASS=oracle123
-ORACLE_BASE=/opt/app/oracle
-ORACLE_HOME=/opt/app/oracle/product/10.2.0/db_1
-ORACLE_DB=/ora/db001
-ORACLE_SW1=/tmp/10201_database_linux_x86_64.cpio.gz
-ORACLE_SW2=/tmp/10201_database_linux_x86_64.cpio
-ORACLE_SW_STG=/tmp/ora10g
-INST_ORACLE_SW_SHELL=/tmp/inst_ora_sw.sh
+# Source env
+if [ -f ./env ]; then
+ . ./env
+else
+ echo "env file not found, run setup to create env file"
+ exit 1
+fi
 
 echo "# CentOS-Base.repo
 #
@@ -94,7 +91,16 @@ sysctl -p
 chkconfig iptables off
 
 # SELinux should be disabled
-echo "SELINUX=disabled
+echo "# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#       enforcing - SELinux security policy is enforced.
+#       permissive - SELinux prints warnings instead of enforcing.
+#       disabled - SELinux is fully disabled.
+#SELINUX=enforcing
+SELINUX=disabled
+# SELINUXTYPE= type of policy in use. Possible values are:
+#       targeted - Only targeted network daemons are protected.
+#       strict - Full SELinux protection.
 SELINUXTYPE=targeted" > /etc/selinux/config
 
 setenforce 0
@@ -102,7 +108,7 @@ setenforce 0
 groupadd -g 54321 oinstall
 groupadd -g 54322 dba
 groupadd -g 54323 oper
-useradd -u 54321 -g oinstall -G dba,oper oracle
+useradd -u 54321 -g oinstall -G dba,oper $O_USER
 
 #Specify oracle password
 passwd $O_USER <<EOF
@@ -112,8 +118,8 @@ EOF
 
 echo "export PATH
 export ORACLE_BASE=$ORACLE_BASE
-export ORACLE_HOME=$ORACLE_BASE/product/10.2.0/db_1
-export ORACLE_SID=ORCL
+export ORACLE_HOME=$ORACLE_HOME
+export ORACLE_SID=$CDB
 export ORACLE_TERM=xterm
 export PATH=$ORACLE_HOME/bin:/usr/sbin:$PATH
 export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
@@ -121,7 +127,7 @@ export CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
 
 #export LD_LIBRARY_PATH CLASSPATH
 
-if [ $USER = "oracle" ]; then
+if [ $USER = "$O_USER" ]; then
   if [ $SHELL = "/bin/ksh" ];then
     ulimit -p 16384
     ulimit -n 65536
@@ -140,10 +146,10 @@ mkdir -p $ORACLE_DB/redo002
 chown -R $O_USER:oinstall $ORACLE_BASE $ORACLE_DB
 chmod -R 775 $ORACLE_BASE $ORACLE_DB
 
-echo "oracle soft nproc 2047
-oracle hard nproc 16384
-oracle soft nofile 1024
-oracle hard nofile 65536" >> /etc/security/limits.conf
+echo "$O_USER soft nproc 2047
+$O_USER hard nproc 16384
+$O_USER soft nofile 1024
+$O_USER hard nofile 65536" >> /etc/security/limits.conf
 
 echo "session required pam_limits.so" >> /etc/pam.d/login
 
@@ -191,12 +197,10 @@ INSTALL_TYPE="EE" \
 oracle.install.db.isCustomInstall=false \
 oracle.install.db.DBA_GROUP=dba \
 oracle.install.db.OPER_GROUP=dba \
-DECLINE_SECURITY_UPDATES=true" > $INST_ORACLE_SW_SHELL
-
-
+DECLINE_SECURITY_UPDATES=true" > ${SCRIPT_DIR}/inst_ora_sw
 
 # Adding execute permission to all users
-chmod a+x $INST_ORACLE_SW_SHELL
+chmod a+x ${SCRIPT_DIR}/inst_ora_sw
 
 # unzip; runInstaller as oracle
-su - $O_USER -c $INST_ORACLE_SW_SHELL
+su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
