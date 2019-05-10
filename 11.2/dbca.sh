@@ -14,7 +14,7 @@ else
 fi
 
 echo "dbca -silent -createDatabase -templateName General_Purpose.dbc \
--gdbname $ORACLE_SID -sid $ORACLE_SID -responseFile NO_VALUE -characterSet AL32UTF8 \
+-gdbname \$ORACLE_SID -sid \$ORACLE_SID -responseFile NO_VALUE -characterSet AL32UTF8 \
 -memoryPercentage 10 -emConfiguration NONE -datafiledestination $ORACLE_DB \
 -sysPassword $SYS_PASS -systemPassword $SYSTEM_PASS \
 -dbsnmpPassword $SYSTEM_PASS -sysmanPassword $SYSTEM_PASS" > ${SCRIPT_DIR}/run_dbca
