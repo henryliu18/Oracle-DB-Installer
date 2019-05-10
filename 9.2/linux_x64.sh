@@ -13,10 +13,6 @@ else
  exit 1
 fi
 
-ORACLE_SW1=/tmp/amd64_db_9204_Disk1.cpio.gz
-ORACLE_SW2=/tmp/amd64_db_9204_Disk2.cpio.gz
-ORACLE_SW3=/tmp/amd64_db_9204_Disk3.cpio.gz
-
 echo "# CentOS-Base.repo
 #
 # CentOS-4 is past End of Life ... use at your own risk
@@ -98,7 +94,16 @@ sysctl -p
 chkconfig iptables off
 
 # SELinux should be disabled
-echo "SELINUX=disabled
+echo "# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#       enforcing - SELinux security policy is enforced.
+#       permissive - SELinux prints warnings instead of enforcing.
+#       disabled - SELinux is fully disabled.
+#SELINUX=enforcing
+SELINUX=disabled
+# SELINUXTYPE= type of policy in use. Possible values are:
+#       targeted - Only targeted network daemons are protected.
+#       strict - Full SELinux protection.
 SELINUXTYPE=targeted" > /etc/selinux/config
 
 setenforce 0
@@ -106,7 +111,7 @@ setenforce 0
 groupadd -g 54321 oinstall
 groupadd -g 54322 dba
 groupadd -g 54323 oper
-useradd -u 54321 -g oinstall -G dba,oper oracle
+useradd -u 54321 -g oinstall -G dba,oper $O_USER
 
 #Specify oracle password
 passwd $O_USER <<EOF
@@ -119,8 +124,8 @@ ORACLE_BASE=$ORACLE_BASE; export ORACLE_BASE
 ORACLE_HOME=$ORACLE_HOME; export ORACLE_HOME
 ORACLE_TERM=xterm; export ORACLE_TERM
 PATH=$ORACLE_HOME/bin:$PATH; export PATH
-ORACLE_OWNER=oracle; export ORACLE_OWNER
-ORACLE_SID=ORCL; export ORACLE_SID
+ORACLE_OWNER=$O_USER; export ORACLE_OWNER
+ORACLE_SID=$CDB; export ORACLE_SID
 
 LD_LIBRARY_PATH=$ORACLE_HOME/lib; export LD_LIBRARY_PATH
 CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
@@ -129,7 +134,7 @@ CLASSPATH=$CLASSPATH:$ORACLE_HOME/network/jlib; export CLASSPATH
 LD_ASSUME_KERNEL=2.4.1; export LD_ASSUME_KERNEL
 THREADS_FLAG=native; export THREADS_FLAG
 TMP=/tmp; export TMP
-TMPDIR=$TMP; export TMPDIR" >> /home/$O_USER/.bash_profile
+TMPDIR=\$TMP; export TMPDIR" >> /home/$O_USER/.bash_profile
 
 #Create directories for software and database
 mkdir -p $ORACLE_HOME
@@ -141,10 +146,10 @@ mkdir -p $ORACLE_DB/redo002
 chown -R $O_USER:oinstall $ORACLE_BASE $ORACLE_DB
 chmod -R 775 $ORACLE_BASE $ORACLE_DB
 
-echo "oracle soft nofile 65536
-oracle hard nofile 65536
-oracle soft nproc 16384
-oracle hard nproc 16384" >> /etc/security/limits.conf
+echo "$O_USER soft nofile 65536
+$O_USER hard nofile 65536
+$O_USER soft nproc 16384
+$O_USER hard nproc 16384" >> /etc/security/limits.conf
 
 # not required in this version 9.2
 # echo "session required pam_limits.so" >> /etc/pam.d/login
@@ -220,8 +225,6 @@ yum install xorg-x11-deprecated-libs-devel* -y
 echo "mkdir $ORACLE_SW_STG
 cd $ORACLE_SW_STG
 
-"${ORACLE_SW1%.*}"
-
 gunzip $ORACLE_SW1
 gunzip $ORACLE_SW2
 gunzip $ORACLE_SW3
@@ -241,5 +244,5 @@ mv /usr/bin/gcc /usr/bin/gcc34
 mv /usr/bin/gcc32 /usr/bin/gcc
 
 
-echo "Now login $O_USER and execute $ORACLE_SW_STG/Disk1/runInstaller..."
-echo "You may need to execute xhost + as root if you install from the console"
+echo "Now login $O_USER and execute $ORACLE_SW_STG/Disk1/runInstaller"
+echo "You may need to execute xhost + as root if you install from via xwindow"
