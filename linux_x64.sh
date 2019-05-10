@@ -21,5 +21,8 @@ elif [ "$O_VER" = "9.2" ]; then
   bash 9.2/linux_x64.sh
 elif [ "$O_VER" = "8.1.7" ]; then
   bash 8.1.7/linux.sh
+else
+  echo "unknown version"
+  exit 2;
 fi
 
