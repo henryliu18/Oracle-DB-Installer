@@ -9,7 +9,7 @@
 if [ -f ./env ]; then
  . ./env
 else
- echo "env file not found in ../, run setup to create env file"
+ echo "env file not found, run setup to create env file"
  exit 1
 fi
 
