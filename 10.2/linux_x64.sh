@@ -204,3 +204,15 @@ chmod a+x ${SCRIPT_DIR}/inst_ora_sw
 
 # unzip; runInstaller as oracle
 su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
+
+# post root tasks
+$ORACLE_BASE/oraInventory/orainstRoot.sh
+$ORACLE_HOME/root.sh<<EOF
+/usr/local/bin
+EOF
+
+# Cleanup
+rm -f ${SCRIPT_DIR}/inst_ora_sw
+# cpio
+rm -f "${ORACLE_SW1%.*}"
+rm -rf $ORACLE_SW_STG
