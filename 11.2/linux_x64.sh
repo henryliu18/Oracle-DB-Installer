@@ -156,7 +156,7 @@ unzip $ORACLE_SW1
 unzip $ORACLE_SW2
 
 #runInstaller SILENT
-$ORACLE_SW_STG/database/runInstaller -silent -debug -force \
+$ORACLE_SW_STG/database/runInstaller -silent -force \
 FROM_LOCATION=$ORACLE_SW_STG/database/stage/products.xml \
 oracle.install.option=INSTALL_DB_SWONLY \
 UNIX_GROUP_NAME=oinstall \
