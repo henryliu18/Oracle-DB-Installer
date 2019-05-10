@@ -22,23 +22,70 @@ clear
 echo "Software (zip file) location"
 
 if [ "$O_VER" = "18c" ]; then
-  read -p "Oracle Database zip file [/tmp/LINUX.X64_180000_db_home.zip]: " ORACLE18_SW
-  ORACLE18_SW=${ORACLE18_SW:-/tmp/LINUX.X64_180000_db_home.zip}
-  if [ ! -f $ORACLE18_SW ]; then
-   echo -e "${RED}$ORACLE18_SW not found, exiting${OFF}"
+  read -p "Oracle Database zip file [/tmp/LINUX.X64_180000_db_home.zip]: " ORACLE_SW
+  ORACLE_SW=${ORACLE_SW:-/tmp/LINUX.X64_180000_db_home.zip}
+  if [ ! -f $ORACLE_SW ]; then
+   echo -e "${RED}$ORACLE_SW not found, exiting${OFF}"
    exit 1
   fi
 elif [ "$O_VER" = "11.2" ]; then
-  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_1of2.zip]: " ORACLE112_SW1
-  ORACLE112_SW1=${ORACLE112_SW1:-/tmp/linux.x64_11gR2_database_1of2.zip}
-  if [ ! -f $ORACLE112_SW1 ]; then
-   echo -e "${RED}$ORACLE112_SW1 not found, exiting${OFF}"
+  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_1of2.zip]: " ORACLE_SW1
+  ORACLE_SW1=${ORACLE_SW1:-/tmp/linux.x64_11gR2_database_1of2.zip}
+  if [ ! -f $ORACLE_SW1 ]; then
+   echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
    exit 1
   fi
-  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_2of2.zip]: " ORACLE112_SW2
-  ORACLE112_SW2=${ORACLE112_SW2:-/tmp/linux.x64_11gR2_database_2of2.zip}
-  if [ ! -f $ORACLE112_SW2 ]; then
-   echo -e "${RED}$ORACLE112_SW2 not found, exiting${OFF}"
+  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_2of2.zip]: " ORACLE_SW2
+  ORACLE_SW2=${ORACLE_SW2:-/tmp/linux.x64_11gR2_database_2of2.zip}
+  if [ ! -f $ORACLE_SW2 ]; then
+   echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
+   exit 1
+  fi
+elif [ "$O_VER" = "10.2" ]; then
+  read -p "Oracle Database zip file [/tmp/10201_database_linux_x86_64.cpio.gz]: " ORACLE_SW1
+  ORACLE_SW1=${ORACLE_SW1:-/tmp/10201_database_linux_x86_64.cpio.gz}
+  if [ ! -f $ORACLE_SW1 ]; then
+   echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
+   exit 1
+  fi
+  read -p "Oracle Database cpio file [/tmp/10201_database_linux_x86_64.cpio]: " ORACLE_SW2
+  ORACLE_SW2=${ORACLE_SW2:-/tmp/10201_database_linux_x86_64.cpio}
+  if [ ! -f $ORACLE_SW2 ]; then
+   echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
+   exit 1
+  fi
+elif [ "$O_VER" = "9.2" ]; then
+  read -p "Oracle Database zip file pattern [/tmp/amd64_db_9204_Disk*.cpio.gz]: " ORACLE_SW1
+  ORACLE_SW1=${ORACLE_SW1:-/tmp/amd64_db_9204_Disk*.cpio.gz}
+  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk1.cpio]: " ORACLE_SW2
+  ORACLE_SW2=${ORACLE_SW2:-/tmp/10201_database_linux_x86_64.cpio}
+  if [ ! -f $ORACLE_SW2 ]; then
+   echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
+   exit 1
+  fi
+  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk2.cpio]: " ORACLE_SW3
+  ORACLE_SW3=${ORACLE_SW3:-/tmp/10201_database_linux_x86_64.cpio}
+  if [ ! -f $ORACLE_SW3 ]; then
+   echo -e "${RED}$ORACLE_SW3 not found, exiting${OFF}"
+   exit 1
+  fi
+  read -p "Oracle Database cpio file [/tmp/amd64_db_9204_Disk3.cpio]: " ORACLE_SW4
+  ORACLE_SW4=${ORACLE_SW4:-/tmp/10201_database_linux_x86_64.cpio}
+  if [ ! -f $ORACLE_SW4 ]; then
+   echo -e "${RED}$ORACLE_SW4 not found, exiting${OFF}"
+   exit 1
+  fi
+elif [ "$O_VER" = "8.1.7" ]; then
+  read -p "Oracle Database bz2 file [/tmp/linux81701.tar.bz2]: " ORACLE_SW1
+  ORACLE_SW1=${ORACLE_SW1:-/tmp/10201_database_linux_x86_64.cpio}
+  if [ ! -f $ORACLE_SW1 ]; then
+   echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
+   exit 1
+  fi
+  read -p "Java software [/tmp/jdk-1_2_2_017-linux-i586.tar.gz]: " JAVA_SW
+  JAVA_SW=${JAVA_SW:-/tmp/jdk-1_2_2_017-linux-i586.tar.gz}
+  if [ ! -f $JAVA_SW ]; then
+   echo -e "${RED}$JAVA_SW not found, exiting${OFF}"
    exit 1
   fi
 fi
@@ -80,8 +127,19 @@ read -p "Location of auto generated scripts during installation [/tmp]: " SCRIPT
 SCRIPT_DIR=${SCRIPT_DIR:-/tmp}
 
 if [ "$O_VER" = "11.2" ]; then
-  read -p "Location of staging directory [/tmp/ora11g]: " ORACLE112_SW_STG
-  ORACLE112_SW_STG=${ORACLE112_SW_STG:-/tmp/ora11g}
+  read -p "Location of staging directory [/tmp/ora11g]: " ORACLE_SW_STG
+  ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora11g}
+elif [ "$O_VER" = "10.2" ]; then
+  read -p "Location of staging directory [/tmp/ora10g]: " ORACLE_SW_STG
+  ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora10g}
+elif [ "$O_VER" = "9.2" ]; then
+  read -p "Location of staging directory [/tmp/ora9i]: " ORACLE_SW_STG
+  ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora9i}
+elif [ "$O_VER" = "8.1.7" ]; then
+  read -p "Location of staging directory [/tmp/ora8i]: " ORACLE_SW_STG
+  ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora8i}
+  read -p "JAVA_HOME [/usr/local/java]: " JAVA_HOME
+  JAVA_HOME=${JAVA_HOME:-/usr/local/java}
 fi
 
 read -p "Location of oratab [/etc/oratab]: " ORATAB
@@ -108,10 +166,8 @@ ORACLE_APP_ROOT=${ORACLE_APP_ROOT}
 ORACLE_BASE=${ORACLE_BASE}
 ORACLE_HOME=${ORACLE_HOME}
 ORACLE_DB=${ORACLE_DB}
-ORACLE18_SW=${ORACLE18_SW}
-ORACLE112_SW1=${ORACLE112_SW1}
-ORACLE112_SW2=${ORACLE112_SW2}
-ORACLE112_SW_STG=${ORACLE112_SW_STG}
+ORACLE_SW=${ORACLE_SW}
+ORACLE_SW_STG=${ORACLE_SW_STG}
 SCRIPT_DIR=${SCRIPT_DIR}
 ORATAB=${ORATAB}
 PDB=${PDB}
