@@ -5,19 +5,17 @@
 # Database software 9.2.0.4 installation, run as root user
 #
 
-NIC=eth0
-O_USER=oracle
-O_PASS=oracle123
-ORACLE_BASE=/opt/app/oracle
-ORACLE_HOME=/opt/app/oracle/product/9.2.0
-ORACLE_DB=/ora/db001
-ORACLE_SW1=/tmp/amd64_db_9204_Disk*.cpio.gz
-ORACLE_SW2=/tmp/amd64_db_9204_Disk1.cpio
-ORACLE_SW3=/tmp/amd64_db_9204_Disk2.cpio
-ORACLE_SW4=/tmp/amd64_db_9204_Disk3.cpio
-ORACLE_SW_STG=/tmp/ora9i
-INST_ORACLE_SW_SHELL=/tmp/inst_ora_sw.sh
+# Source env
+if [ -f ./env ]; then
+ . ./env
+else
+ echo "env file not found, run setup to create env file"
+ exit 1
+fi
 
+ORACLE_SW1=/tmp/amd64_db_9204_Disk1.cpio.gz
+ORACLE_SW2=/tmp/amd64_db_9204_Disk2.cpio.gz
+ORACLE_SW3=/tmp/amd64_db_9204_Disk3.cpio.gz
 
 echo "# CentOS-Base.repo
 #
@@ -222,17 +220,21 @@ yum install xorg-x11-deprecated-libs-devel* -y
 echo "mkdir $ORACLE_SW_STG
 cd $ORACLE_SW_STG
 
+"${ORACLE_SW1%.*}"
+
 gunzip $ORACLE_SW1
-cpio -idmv < $ORACLE_SW2
-cpio -idmv < $ORACLE_SW3
-cpio -idmv < $ORACLE_SW4
-" > $INST_ORACLE_SW_SHELL
+gunzip $ORACLE_SW2
+gunzip $ORACLE_SW3
+cpio -idmv < "${ORACLE_SW1%.*}"
+cpio -idmv < "${ORACLE_SW2%.*}"
+cpio -idmv < "${ORACLE_SW3%.*}"
+" > ${SCRIPT_DIR}/inst_ora_sw
 
 # Adding execute permission to all users
-chmod a+x $INST_ORACLE_SW_SHELL
+chmod a+x ${SCRIPT_DIR}/inst_ora_sw
 
 # unzip; runInstaller as oracle
-su - $O_USER -c $INST_ORACLE_SW_SHELL
+su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 
 # Replace gcc 3.4 with gcc 3.2
 mv /usr/bin/gcc /usr/bin/gcc34
