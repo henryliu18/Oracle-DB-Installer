@@ -156,7 +156,7 @@ unzip $ORACLE_SW1
 unzip $ORACLE_SW2
 
 #runInstaller SILENT
-$ORACLE_SW_STG/database/runInstaller -silent -force \
+$ORACLE_SW_STG/database/runInstaller -nobackground -silent -force \
 FROM_LOCATION=$ORACLE_SW_STG/database/stage/products.xml \
 oracle.install.option=INSTALL_DB_SWONLY \
 UNIX_GROUP_NAME=oinstall \
@@ -179,7 +179,7 @@ su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 # execute last 2 scripts as root
 
 ##$ORACLE_APP_ROOT/oraInventory/orainstRoot.sh
-##$ORACLE_HOME/root.sh
+$ORACLE_HOME/root.sh
 
-##rm -rf $ORACLE_SW_STG
-##rm -f ${SCRIPT_DIR}/inst_ora_sw
+rm -rf $ORACLE_SW_STG
+rm -f ${SCRIPT_DIR}/inst_ora_sw
