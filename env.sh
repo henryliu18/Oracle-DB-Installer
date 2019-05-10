@@ -22,23 +22,23 @@ clear
 echo "Software (zip file) location"
 
 if [ "$O_VER" = "18c" ]; then
-  read -p "Oracle Database zip file [/tmp/LINUX.X64_180000_db_home.zip]: " ORACLE_SW
-  ORACLE_SW=${ORACLE_SW:-/tmp/LINUX.X64_180000_db_home.zip}
-  if [ ! -f $ORACLE_SW ]; then
-   echo -e "${RED}$ORACLE_SW not found, exiting${OFF}"
+  read -p "Oracle Database zip file [/tmp/LINUX.X64_180000_db_home.zip]: " ORACLE18_SW
+  ORACLE18_SW=${ORACLE18_SW:-/tmp/LINUX.X64_180000_db_home.zip}
+  if [ ! -f $ORACLE18_SW ]; then
+   echo -e "${RED}$ORACLE18_SW not found, exiting${OFF}"
    exit 1
   fi
 elif [ "$O_VER" = "11.2" ]; then
-  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_1of2.zip]: " ORACLE_SW1
-  ORACLE_SW1=${ORACLE_SW1:-/tmp/linux.x64_11gR2_database_1of2.zip}
-  if [ ! -f $ORACLE_SW1 ]; then
-   echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
+  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_1of2.zip]: " ORACLE112_SW1
+  ORACLE112_SW1=${ORACLE112_SW1:-/tmp/linux.x64_11gR2_database_1of2.zip}
+  if [ ! -f $ORACLE112_SW1 ]; then
+   echo -e "${RED}$ORACLE112_SW1 not found, exiting${OFF}"
    exit 1
   fi
-  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_2of2.zip]: " ORACLE_SW2
-  ORACLE_SW2=${ORACLE_SW2:-/tmp/linux.x64_11gR2_database_2of2.zip}
-  if [ ! -f $ORACLE_SW2 ]; then
-   echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
+  read -p "Oracle Database zip file [/tmp/linux.x64_11gR2_database_2of2.zip]: " ORACLE112_SW2
+  ORACLE112_SW2=${ORACLE112_SW2:-/tmp/linux.x64_11gR2_database_2of2.zip}
+  if [ ! -f $ORACLE112_SW2 ]; then
+   echo -e "${RED}$ORACLE112_SW2 not found, exiting${OFF}"
    exit 1
   fi
 fi
@@ -99,7 +99,9 @@ ORACLE_APP_ROOT=${ORACLE_APP_ROOT}
 ORACLE_BASE=${ORACLE_BASE}
 ORACLE_HOME=${ORACLE_HOME}
 ORACLE_DB=${ORACLE_DB}
-ORACLE_SW=${ORACLE_SW}
+ORACLE18_SW=${ORACLE18_SW}
+ORACLE112_SW1=${ORACLE112_SW1}
+ORACLE112_SW2=${ORACLE112_SW2}
 SCRIPT_DIR=${SCRIPT_DIR}
 ORATAB=${ORATAB}
 PDB=${PDB}
