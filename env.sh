@@ -15,6 +15,9 @@ if [ $? -ne 0 ]; then
  exit 1
 fi
 
+read -p "Oracle version [8.1.7/9.2/10.2/11.2/12c/*18c]: " O_VER
+O_VER=${O_VER:-18c}
+
 clear
 echo "Software (zip file) location"
 read -p "Oracle Database zip file [/tmp/LINUX.X64_180000_db_home.zip]: " ORACLE_SW
@@ -72,6 +75,7 @@ PDB=${PDB:-pdb1}
 echo "NIC=${NIC}
 O_USER=${O_USER}
 O_PASS=${O_PASS}
+O_VER=${O_VER}
 SYS_PASS=${SYS_PASS}
 SYSTEM_PASS=${SYSTEM_PASS}
 PDBADMIN_PASS=${PDBADMIN_PASS}
