@@ -70,8 +70,8 @@ ORACLE_APP_ROOT=${ORACLE_APP_ROOT:-/opt/app}
 read -p "\$ORACLE_BASE (oracle database root directory) [\$ORACLE_APP_ROOT/oracle]: " ORACLE_BASE
 ORACLE_BASE=${ORACLE_BASE:-\$ORACLE_APP_ROOT/oracle}
 
-read -p "\$ORACLE_HOME (oracle database home directory) [\$ORACLE_BASE/product/18.0.0/dbhome_1]: " ORACLE_HOME
-ORACLE_HOME=${ORACLE_HOME:-\$ORACLE_BASE/product/18.0.0/dbhome_1}
+read -p "\$ORACLE_HOME (oracle database home directory) [\$ORACLE_BASE/product/$O_VER/dbhome_1]: " ORACLE_HOME
+ORACLE_HOME=${ORACLE_HOME:-\$ORACLE_BASE/product/$O_VER/dbhome_1}
 
 read -p "Oracle database files directory [/ora/db001]: " ORACLE_DB
 ORACLE_DB=${ORACLE_DB:-/ora/db001}
