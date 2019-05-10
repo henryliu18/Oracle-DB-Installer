@@ -17,6 +17,11 @@ fi
 #/etc/hosts configuration
 echo "`ip -f inet addr show $NIC | grep -Po 'inet \K[\d.]+'` `hostname`" >> /etc/hosts
 
+echo "inventory_loc=$ORACLE_BASE/oraInventory" > /etc/oraInst.loc
+chown $O_USER:oinstall /etc/oraInst.loc
+chmod 777 /etc/oraInst.loc
+
+
 #Configuring the Kernel Parameter Settings
 echo "fs.aio-max-nr = 1048576
 fs.file-max = 6815744
