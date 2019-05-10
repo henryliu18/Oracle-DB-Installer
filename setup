@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 if [ "$1" = "env" ]; then
   bash `dirname $0`/env.sh
