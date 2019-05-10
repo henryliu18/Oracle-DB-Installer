@@ -77,6 +77,11 @@ ORACLE_DB=${ORACLE_DB:-/ora/db001}
 read -p "Location of auto generated scripts during installation [/tmp]: " SCRIPT_DIR
 SCRIPT_DIR=${SCRIPT_DIR:-/tmp}
 
+if [ "$O_VER" = "11.2" ]; then
+  read -p "Location of staging directory [/tmp]: " ORACLE112_SW_STG
+  ORACLE112_SW_STG=${ORACLE112_SW_STG:-/tmp/ora11g}
+fi
+
 read -p "Location of oratab [/etc/oratab]: " ORATAB
 ORATAB=${ORATAB:-/etc/oratab}
 
