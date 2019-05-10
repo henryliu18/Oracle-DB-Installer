@@ -1,4 +1,4 @@
-# Oracle-database-installation
+# Oracle-DB-Installer
 Your Oracle database automated installer from 8i to 18c
 
 1. setup env
