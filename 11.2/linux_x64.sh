@@ -6,6 +6,13 @@
 #
 #
 
+# Source env
+if [ -f ./env ]; then
+ . ./env
+else
+ echo "env file not found, run setup to create env file"
+ exit 1
+fi
 
 #/etc/hosts configuration
 echo "`ip -f inet addr show $NIC | grep -Po 'inet \K[\d.]+'` `hostname`" >> /etc/hosts
