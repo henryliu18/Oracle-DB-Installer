@@ -177,8 +177,9 @@ chmod a+x ${SCRIPT_DIR}/inst_ora_sw
 su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 
 # execute last 2 scripts as root
-$ORACLE_APP_ROOT/oraInventory/orainstRoot.sh
-$ORACLE_HOME/root.sh
 
-rm -rf $ORACLE_SW_STG
-rm -f ${SCRIPT_DIR}/inst_ora_sw
+##$ORACLE_APP_ROOT/oraInventory/orainstRoot.sh
+##$ORACLE_HOME/root.sh
+
+##rm -rf $ORACLE_SW_STG
+##rm -f ${SCRIPT_DIR}/inst_ora_sw
