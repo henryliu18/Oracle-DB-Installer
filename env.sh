@@ -6,7 +6,7 @@ OFF='\033[0m'
 
 clear
 echo "Networking"
-ifconfig -a|grep 'inet\|flags'
+ifconfig -a|grep 'inet\|flags\|Link'
 read -p "Servicable network interface [enp0s8]: " NIC
 NIC=${NIC:-enp0s8}
 ifconfig $NIC
