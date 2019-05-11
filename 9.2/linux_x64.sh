@@ -222,15 +222,31 @@ yum install libaio* -y
 yum install openmotif21* -y
 yum install xorg-x11-deprecated-libs-devel* -y
 
+chown $O_USER:oinstall $ORACLE_SW1
+chown $O_USER:oinstall $ORACLE_SW2
+chown $O_USER:oinstall $ORACLE_SW3
+
 echo "mkdir $ORACLE_SW_STG
 cd $ORACLE_SW_STG
 
-gunzip $ORACLE_SW1
-gunzip $ORACLE_SW2
-gunzip $ORACLE_SW3
-cpio -idmv < "${ORACLE_SW1%.*}"
-cpio -idmv < "${ORACLE_SW2%.*}"
-cpio -idmv < "${ORACLE_SW3%.*}"
+f [ -f "${ORACLE_SW1%.*}" ]; then 
+  cpio -idmv < "${ORACLE_SW1%.*}";
+else
+  gunzip $ORACLE_SW1
+  cpio -idmv < "${ORACLE_SW1%.*}";
+fi
+f [ -f "${ORACLE_SW2%.*}" ]; then 
+  cpio -idmv < "${ORACLE_SW2%.*}";
+else
+  gunzip $ORACLE_SW2
+  cpio -idmv < "${ORACLE_SW2%.*}";
+fi
+f [ -f "${ORACLE_SW3%.*}" ]; then 
+  cpio -idmv < "${ORACLE_SW3%.*}";
+else
+  gunzip $ORACLE_SW3
+  cpio -idmv < "${ORACLE_SW3%.*}";
+fi
 " > ${SCRIPT_DIR}/inst_ora_sw
 
 # Adding execute permission to all users
