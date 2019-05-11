@@ -182,8 +182,11 @@ yum install sysstat -y
 echo "rm -rf $ORACLE_SW_STG
 mkdir $ORACLE_SW_STG
 cd $ORACLE_SW_STG
-gunzip $ORACLE_SW1
-cpio -idmv < "${ORACLE_SW1%.*}"
+if [ -f "${ORACLE_SW1%.*}" ]; then 
+  cpio -idmv < "${ORACLE_SW1%.*}";
+else
+  gunzip $ORACLE_SW1
+fi
 #runInstaller SILENT
 $ORACLE_SW_STG/database/runInstaller -waitforcompletion -silent -ignoreSysPrereqs \
 FROM_LOCATION=$ORACLE_SW_STG/database/stage/products.xml \
