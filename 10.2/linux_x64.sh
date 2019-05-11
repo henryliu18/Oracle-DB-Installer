@@ -178,6 +178,7 @@ yum install libXtst -y
 yum install make -y
 yum install sysstat -y
 
+chown $O_USER:oinstall $ORACLE_SW1
 
 echo "rm -rf $ORACLE_SW_STG
 mkdir $ORACLE_SW_STG
@@ -185,7 +186,7 @@ cd $ORACLE_SW_STG
 if [ -f "${ORACLE_SW1%.*}" ]; then 
   cpio -idmv < "${ORACLE_SW1%.*}";
 else
-  gunzip -k $ORACLE_SW1
+  gunzip $ORACLE_SW1
 fi
 #runInstaller SILENT
 $ORACLE_SW_STG/database/runInstaller -waitforcompletion -silent -ignoreSysPrereqs \
