@@ -186,7 +186,7 @@ cd $ORACLE_SW_STG
 if [ -f "${ORACLE_SW1%.*}" ]; then 
   cpio -idmv < "${ORACLE_SW1%.*}";
 else
-  gunzip $ORACLE_SW1
+  gunzip < $ORACLE_SW1 > "${ORACLE_SW1%.*}"
   cpio -idmv < "${ORACLE_SW1%.*}";
 fi
 #runInstaller SILENT
