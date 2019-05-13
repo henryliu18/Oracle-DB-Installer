@@ -5,6 +5,9 @@
 # Database software 9.2.0.4 installation, run as root user
 #
 
+# MUST HAVE XMING or directly logged in console GUI as runInstaller will initiate X11 session even
+# in SILENT mode
+
 # Source env
 if [ -f ./env ]; then
  . ./env
