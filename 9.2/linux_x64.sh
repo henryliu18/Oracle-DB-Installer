@@ -229,19 +229,19 @@ chown $O_USER:oinstall $ORACLE_SW3
 echo "mkdir $ORACLE_SW_STG
 cd $ORACLE_SW_STG
 
-f [ -f "${ORACLE_SW1%.*}" ]; then 
+if [ -f "${ORACLE_SW1%.*}" ]; then 
   cpio -idmv < "${ORACLE_SW1%.*}";
 else
   gunzip $ORACLE_SW1
   cpio -idmv < "${ORACLE_SW1%.*}";
 fi
-f [ -f "${ORACLE_SW2%.*}" ]; then 
+if [ -f "${ORACLE_SW2%.*}" ]; then 
   cpio -idmv < "${ORACLE_SW2%.*}";
 else
   gunzip $ORACLE_SW2
   cpio -idmv < "${ORACLE_SW2%.*}";
 fi
-f [ -f "${ORACLE_SW3%.*}" ]; then 
+if [ -f "${ORACLE_SW3%.*}" ]; then 
   cpio -idmv < "${ORACLE_SW3%.*}";
 else
   gunzip $ORACLE_SW3
