@@ -260,6 +260,11 @@ su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 mv /usr/bin/gcc /usr/bin/gcc34
 mv /usr/bin/gcc32 /usr/bin/gcc
 
+# create /etc/oraInst.loc as root
+echo "inventory_loc=$ORACLE_BASE/oraInventory
+inst_group=oinstall" > /etc/oraInst.loc
+
+
 
 echo "Now login $O_USER and execute $ORACLE_SW_STG/Disk1/runInstaller"
 echo "You may need to execute xhost + as root if you install from via xwindow"
