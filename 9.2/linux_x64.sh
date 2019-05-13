@@ -252,11 +252,10 @@ fi
 
 # Adding execute permission to all users
 chmod a+x ${SCRIPT_DIR}/inst_ora_sw
-
 # unzip; runInstaller as oracle
 su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 
-# Replace gcc 3.4 with gcc 3.2
+# Replace gcc 3.4 with gcc 3.2 - root task
 mv /usr/bin/gcc /usr/bin/gcc34
 mv /usr/bin/gcc32 /usr/bin/gcc
 
@@ -264,7 +263,22 @@ mv /usr/bin/gcc32 /usr/bin/gcc
 echo "inventory_loc=$ORACLE_BASE/oraInventory
 inst_group=oinstall" > /etc/oraInst.loc
 
+# responseFile creation
+sed -e "/UNIX_GROUP_NAME=/s/^/#/g" $ORACLE_SW_STG/Disk1/response/enterprise.rsp > $SCRIPT_DIR/sw1.rsp
+sed -e "/FROM_LOCATION=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
+sed -e "/ORACLE_HOME=/s/^/#/g" $SCRIPT_DIR/sw2.rsp > $SCRIPT_DIR/sw1.rsp
+sed -e "/ORACLE_HOME_NAME=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
 
+echo "UNIX_GROUP_NAME=\"oinstall\"
+FROM_LOCATION=\"$ORACLE_SW_STG/Disk1/stage/products.jar\"
+ORACLE_HOME=\"$ORACLE_HOME\"
+ORACLE_HOME_NAME=\"OraHome92\"" >> $SCRIPT_DIR/sw2.rsp
 
-echo "Now login $O_USER and execute $ORACLE_SW_STG/Disk1/runInstaller"
-echo "You may need to execute xhost + as root if you install from via xwindow"
+echo "$ORACLE_SW_STG/Disk1/runInstaller -responseFile $SCRIPT_DIR/sw2.rsp -silent" > ${SCRIPT_DIR}/inst_ora_sw2
+# Adding execute permission to all users
+chmod a+x ${SCRIPT_DIR}/inst_ora_sw2
+# unzip; runInstaller as oracle
+su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw2
+
+# root.sh as root
+$ORACLE_HOME/root.sh
