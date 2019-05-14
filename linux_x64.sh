@@ -10,17 +10,17 @@ else
 fi
 
 if [ "$O_VER" = "18c" ]; then
-  bash 18c/linux_x64.sh
+  bash `dirname $0`/18c/linux_x64.sh
 elif [ "$O_VER" = "12c" ]; then
-  bash 12c/linux_x64.sh
+  bash `dirname $0`/12c/linux_x64.sh
 elif [ "$O_VER" = "11.2" ]; then
-  bash 11.2/linux_x64.sh
+  bash `dirname $0`/11.2/linux_x64.sh
 elif [ "$O_VER" = "10.2" ]; then
-  bash 10.2/linux_x64.sh
+  bash `dirname $0`/10.2/linux_x64.sh
 elif [ "$O_VER" = "9.2" ]; then
-  bash 9.2/linux_x64.sh && $ORACLE_HOME/root.sh
+  bash `dirname $0`/9.2/linux_x64.sh && $ORACLE_HOME/root.sh
 elif [ "$O_VER" = "8.1.7" ]; then
-  bash 8.1.7/linux.sh
+  bash `dirname $0`/8.1.7/linux.sh
 else
   echo "unknown version"
   exit 2;
