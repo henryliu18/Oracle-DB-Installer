@@ -267,18 +267,23 @@ echo "inventory_loc=$ORACLE_BASE/oraInventory
 inst_group=oinstall" > /etc/oraInst.loc
 
 # responseFile creation
-sed -e "/UNIX_GROUP_NAME=/s/^/#/g" $ORACLE_SW_STG/Disk1/response/enterprise.rsp > $SCRIPT_DIR/sw1.rsp
-sed -e "/FROM_LOCATION=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
-sed -e "/ORACLE_HOME=/s/^/#/g" $SCRIPT_DIR/sw2.rsp > $SCRIPT_DIR/sw1.rsp
-sed -e "/ORACLE_HOME_NAME=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
+sed -e "s/UNIX_GROUP_NAME=<Value Unspecified>/UNIX_GROUP_NAME=\"oinstall\"/g" $ORACLE_SW_STG/Disk1/response/enterprise.rsp > $SCRIPT_DIR/sw1.rsp
+sed -e "s/FROM_LOCATION=\"..\/stage\/products.jar\"/FROM_LOCATION=\"$ORACLE_SW_STG\/Disk1\/stage\/products.jar\"/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
+sed -e "s/ORACLE_HOME=<Value Required>/ORACLE_HOME=$ORACLE_HOME/g" $SCRIPT_DIR/sw2.rsp > $SCRIPT_DIR/sw1.rsp
+sed -e "s/ORACLE_HOME_NAME=\"OHOME1\"/ORACLE_HOME_NAME=\"OraHome92\"/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
+
+#sed -e "/UNIX_GROUP_NAME=/s/^/#/g" $ORACLE_SW_STG/Disk1/response/enterprise.rsp > $SCRIPT_DIR/sw1.rsp
+#sed -e "/FROM_LOCATION=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
+#sed -e "/ORACLE_HOME=/s/^/#/g" $SCRIPT_DIR/sw2.rsp > $SCRIPT_DIR/sw1.rsp
+#sed -e "/ORACLE_HOME_NAME=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
+
+#echo "UNIX_GROUP_NAME=\"oinstall\"
+#FROM_LOCATION=\"$ORACLE_SW_STG/Disk1/stage/products.jar\"
+#ORACLE_HOME=\"$ORACLE_HOME\"
+#ORACLE_HOME_NAME=\"OraHome92\"" >> $SCRIPT_DIR/sw2.rsp
 
 # xhost +
 xhost +
-
-echo "UNIX_GROUP_NAME=\"oinstall\"
-FROM_LOCATION=\"$ORACLE_SW_STG/Disk1/stage/products.jar\"
-ORACLE_HOME=\"$ORACLE_HOME\"
-ORACLE_HOME_NAME=\"OraHome92\"" >> $SCRIPT_DIR/sw2.rsp
 
 echo "$ORACLE_SW_STG/Disk1/runInstaller -waitforcompletion -responseFile $SCRIPT_DIR/sw2.rsp -silent" > ${SCRIPT_DIR}/inst_ora_sw2
 # Adding execute permission to all users
