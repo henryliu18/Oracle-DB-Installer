@@ -307,7 +307,7 @@ UNIX_GROUP_NAME="oinstall"
 #Type: String
 #Description: Complete path of the products.jar.
 #Example : FROM_LOCATION = "../stage/products.jar"
-FROM_LOCATION="/tmp/ora9i/Disk1/stage/products.jar"
+FROM_LOCATION="$ORACLE_SW_STG/Disk1/stage/products.jar"
 
 #Parameter: FROM_LOCATION_CD_LABEL
 #Type: String
@@ -325,13 +325,13 @@ NEXT_SESSION_RESPONSE=<Value Unspecified>
 #Type: String
 #Description: Complete Location of the Oracle Home.
 #Example : ORACLE_HOME = "C:\OHOME1"
-ORACLE_HOME="/opt/app/oracle/product/9.2/dbhome_1"
+ORACLE_HOME="$ORACLE_HOME"
 
 #Parameter: ORACLE_HOME_NAME
 #Type: String
 #Description: Oracle Home Name. Used in creating folders, services.
 #Example : ORACLE_HOME_NAME = "OHOME1"
-ORACLE_HOME_NAME="OHOME1"
+ORACLE_HOME_NAME="OraHome92"
 
 #Parameter: TOPLEVEL_COMPONENT
 #Type: StringList
