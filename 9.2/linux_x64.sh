@@ -129,7 +129,7 @@ ORACLE_TERM=xterm; export ORACLE_TERM
 PATH=$ORACLE_HOME/bin:$PATH; export PATH
 ORACLE_OWNER=$O_USER; export ORACLE_OWNER
 ORACLE_SID=$CDB; export ORACLE_SID
-DISPLAY=localhost:0.0; export DISPLAY
+DISPLAY=:0.0; export DISPLAY
 
 LD_LIBRARY_PATH=$ORACLE_HOME/lib; export LD_LIBRARY_PATH
 CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
@@ -280,7 +280,7 @@ FROM_LOCATION=\"$ORACLE_SW_STG/Disk1/stage/products.jar\"
 ORACLE_HOME=\"$ORACLE_HOME\"
 ORACLE_HOME_NAME=\"OraHome92\"" >> $SCRIPT_DIR/sw2.rsp
 
-echo "$ORACLE_SW_STG/Disk1/runInstaller -responseFile $SCRIPT_DIR/sw2.rsp -silent" > ${SCRIPT_DIR}/inst_ora_sw2
+echo "$ORACLE_SW_STG/Disk1/runInstaller -waitforcompletion -responseFile $SCRIPT_DIR/sw2.rsp -silent" > ${SCRIPT_DIR}/inst_ora_sw2
 # Adding execute permission to all users
 chmod a+x ${SCRIPT_DIR}/inst_ora_sw2
 # unzip; runInstaller as oracle
