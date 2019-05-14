@@ -272,6 +272,9 @@ sed -e "/FROM_LOCATION=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
 sed -e "/ORACLE_HOME=/s/^/#/g" $SCRIPT_DIR/sw2.rsp > $SCRIPT_DIR/sw1.rsp
 sed -e "/ORACLE_HOME_NAME=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
 
+# xhost +
+xhost +
+
 echo "UNIX_GROUP_NAME=\"oinstall\"
 FROM_LOCATION=\"$ORACLE_SW_STG/Disk1/stage/products.jar\"
 ORACLE_HOME=\"$ORACLE_HOME\"
