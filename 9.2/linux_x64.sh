@@ -1499,13 +1499,20 @@ chmod a+x ${SCRIPT_DIR}/inst_ora_sw2
 # unzip; runInstaller as oracle
 su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw2
 
-# root.sh as root
+# log checker of oracle installer
 until [ "$OUTPUT" = "Result code for launching of configuration tool is 0" ]; do
   OUTPUT=`grep 'Result code for launching of configuration tool is 0' $ORACLE_BASE/oraInventory/logs/installActions*.log`
   sleep 5
 done
 
-$ORACLE_HOME/root.sh
+# root.sh as root
+$ORACLE_HOME/root.sh<<EOF
+/usr/local/bin
+EOF
+
+# Revert gcc 3.4 from gcc 3.2
+mv /usr/bin/gcc /usr/bin/gcc32
+mv /usr/bin/gcc34 /usr/bin/gcc
 
 # cleanup
 #rm -f ${SCRIPT_DIR}/inst_ora_sw
