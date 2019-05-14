@@ -1500,7 +1500,7 @@ chmod a+x ${SCRIPT_DIR}/inst_ora_sw2
 su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw2
 
 # root.sh as root
-$ORACLE_HOME/root.sh
+#$ORACLE_HOME/root.sh
 
 # cleanup
 #rm -f ${SCRIPT_DIR}/inst_ora_sw
