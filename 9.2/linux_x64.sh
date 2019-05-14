@@ -1500,7 +1500,12 @@ chmod a+x ${SCRIPT_DIR}/inst_ora_sw2
 su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw2
 
 # root.sh as root
-#$ORACLE_HOME/root.sh
+until [ "$OUTPUT" = "Result code for launching of configuration tool is 0" ]; do
+  OUTPUT=`grep 'Result code for launching of configuration tool is 0' $ORACLE_BASE/oraInventory/logs/installActions*.log`
+  sleep 5
+done
+
+$ORACLE_HOME/root.sh
 
 # cleanup
 #rm -f ${SCRIPT_DIR}/inst_ora_sw
