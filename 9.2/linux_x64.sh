@@ -1500,8 +1500,8 @@ chmod a+x ${SCRIPT_DIR}/inst_ora_sw2
 su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw2
 
 # log checker of oracle installer
-until [ "$OUTPUT" = "Result code for launching of configuration tool is 0" ]; do
-  OUTPUT=`grep 'Result code for launching of configuration tool is 0' $ORACLE_BASE/oraInventory/logs/installActions*.log`
+until [ "$OUTPUT" = "The installation of Oracle9i Database was successful." ]; do
+  OUTPUT=`grep 'The installation of Oracle9i Database was successful.' $ORACLE_BASE/oraInventory/logs/silentInstall*.log`
   sleep 5
 done
 
@@ -1515,7 +1515,7 @@ mv /usr/bin/gcc /usr/bin/gcc32
 mv /usr/bin/gcc34 /usr/bin/gcc
 
 # cleanup
-#rm -f ${SCRIPT_DIR}/inst_ora_sw
-#rm -f ${SCRIPT_DIR}/inst_ora_sw2
-#rm -f ${SCRIPT_DIR}/enterprise.rsp
-#rm -rf $ORACLE_SW_STG
+rm -f ${SCRIPT_DIR}/inst_ora_sw
+rm -f ${SCRIPT_DIR}/inst_ora_sw2
+rm -f ${SCRIPT_DIR}/enterprise.rsp
+rm -rf $ORACLE_SW_STG
