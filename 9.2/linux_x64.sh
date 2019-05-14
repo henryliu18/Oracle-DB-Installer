@@ -1501,3 +1501,9 @@ su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw2
 
 # root.sh as root
 $ORACLE_HOME/root.sh
+
+# cleanup
+#rm -f ${SCRIPT_DIR}/inst_ora_sw
+#rm -f ${SCRIPT_DIR}/inst_ora_sw2
+#rm -f ${SCRIPT_DIR}/enterprise.rsp
+#rm -rf $ORACLE_SW_STG
