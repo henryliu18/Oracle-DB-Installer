@@ -18,7 +18,7 @@ elif [ "$O_VER" = "11.2" ]; then
 elif [ "$O_VER" = "10.2" ]; then
   bash 10.2/linux_x64.sh
 elif [ "$O_VER" = "9.2" ]; then
-  bash 9.2/linux_x64.sh
+  bash 9.2/linux_x64.sh && $ORACLE_HOME/root.sh
 elif [ "$O_VER" = "8.1.7" ]; then
   bash 8.1.7/linux.sh
 else
