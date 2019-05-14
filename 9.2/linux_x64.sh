@@ -267,20 +267,552 @@ echo "inventory_loc=$ORACLE_BASE/oraInventory
 inst_group=oinstall" > /etc/oraInst.loc
 
 # responseFile creation
-sed -e "s/UNIX_GROUP_NAME=<Value Unspecified>/UNIX_GROUP_NAME=\"oinstall\"/g" $ORACLE_SW_STG/Disk1/response/enterprise.rsp > $SCRIPT_DIR/sw1.rsp
-sed -e "s/FROM_LOCATION=\"..\/stage\/products.jar\"/FROM_LOCATION=\"$ORACLE_SW_STG\/Disk1\/stage\/products.jar\"/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
-sed -e "s/ORACLE_HOME=<Value Required>/ORACLE_HOME=$ORACLE_HOME/g" $SCRIPT_DIR/sw2.rsp > $SCRIPT_DIR/sw1.rsp
-sed -e "s/ORACLE_HOME_NAME=\"OHOME1\"/ORACLE_HOME_NAME=\"OraHome92\"/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
+echo "[General]
+RESPONSEFILE_VERSION=1.7.0
 
-#sed -e "/UNIX_GROUP_NAME=/s/^/#/g" $ORACLE_SW_STG/Disk1/response/enterprise.rsp > $SCRIPT_DIR/sw1.rsp
-#sed -e "/FROM_LOCATION=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
-#sed -e "/ORACLE_HOME=/s/^/#/g" $SCRIPT_DIR/sw2.rsp > $SCRIPT_DIR/sw1.rsp
-#sed -e "/ORACLE_HOME_NAME=/s/^/#/g" $SCRIPT_DIR/sw1.rsp > $SCRIPT_DIR/sw2.rsp
 
-#echo "UNIX_GROUP_NAME=\"oinstall\"
-#FROM_LOCATION=\"$ORACLE_SW_STG/Disk1/stage/products.jar\"
-#ORACLE_HOME=\"$ORACLE_HOME\"
-#ORACLE_HOME_NAME=\"OraHome92\"" >> $SCRIPT_DIR/sw2.rsp
+[SESSION]
+UNIX_GROUP_NAME="oinstall"
+
+FROM_LOCATION="$ORACLE_SW_STG/Disk1/response/enterprise.rsp"
+
+FROM_LOCATION_CD_LABEL=<Value Unspecified>
+
+NEXT_SESSION_RESPONSE=<Value Unspecified>
+
+ORACLE_HOME="$ORACLE_HOME"
+
+ORACLE_HOME_NAME="OraHome92"
+
+TOPLEVEL_COMPONENT={"oracle.server","9.2.0.4.0"}
+
+DEINSTALL_LIST={"oracle.server","9.2.0.4.0"}
+
+SHOW_SPLASH_SCREEN=true
+
+SHOW_WELCOME_PAGE=false
+
+SHOW_COMPONENT_LOCATIONS_PAGE=false
+
+SHOW_CUSTOM_TREE_PAGE=false
+
+SHOW_SUMMARY_PAGE=true
+
+SHOW_INSTALL_PROGRESS_PAGE=true
+
+SHOW_REQUIRED_CONFIG_TOOL_PAGE=true
+
+SHOW_OPTIONAL_CONFIG_TOOL_PAGE=true
+
+SHOW_RELEASE_NOTES=true
+
+SHOW_ROOTSH_CONFIRMATION=true
+
+SHOW_END_SESSION_PAGE=true
+
+SHOW_EXIT_CONFIRMATION=true
+
+NEXT_SESSION=true
+
+NEXT_SESSION_ON_FAIL=true
+
+SHOW_DEINSTALL_CONFIRMATION=true
+
+SHOW_DEINSTALL_PROGRESS=true
+
+
+[oracle.server_9.2.0.4.0]
+COMPONENT_LANGUAGES={"en"}
+
+INSTALL_TYPE="EE"
+
+s_serverInstallType=<Value Unspecified>
+
+s_selectedNodes=<Value Unspecified>
+
+s_dbcaProgressOnly=<Value Unspecified>
+
+s_cfgtyperet=<Value Unspecified>
+
+s_bundleName=<Value Unspecified>
+
+b_rdbmsInstalling=<Value Unspecified>
+
+b_launchNETCA=<Value Unspecified>
+
+b_autoStartApache=<Value Unspecified>
+
+
+[oracle.options_9.2.0.1.0]
+s_serverInstallType=<Value Unspecified>
+
+s_cfgtyperet=<Value Unspecified>
+
+s_bundleName=<Value Unspecified>
+
+
+[oracle.options.ops_9.2.0.4.0]
+s_serverInstallType=<Value Unspecified>
+
+s_cfgtyperet=<Value Unspecified>
+
+s_OPSSelectedNodes=<Value Unspecified>
+
+s_rawDeviceName=<Value Unspecified>
+
+
+[oracle.cartridges.spatial_9.2.0.4.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.options.ano_9.2.0.1.0]
+s_bundleName=<Value Unspecified>
+
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.options.odm_9.2.0.4.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.rdbms_9.2.0.4.0]
+sl_dbaOperGroups=<Value Unspecified>
+
+s_serverInstallType=<Value Unspecified>
+
+s_nameOfBundle=<Value Unspecified>
+
+s_dbcaProgressOnly=<Value Unspecified>
+
+s_cfgtyperet=<Value Unspecified>
+
+s_bundleName=<Value Unspecified>
+
+s_OPSSelectedNodes=<Value Unspecified>
+
+s_OPSNodeInfoString=<Value Unspecified>
+
+s_OPSClusterUser=<Value Unspecified>
+
+s_OPSClusterPassword=<Value Unspecified>
+
+s_GlobalDBName=<Value Unspecified>
+
+b_rdbmsInstalling=<Value Unspecified>
+
+b_lowResource=<Value Unspecified>
+
+b_javaOptionBeingInstalled=<Value Unspecified>
+
+
+[oracle.networking_9.2.0.1.0]
+s_cfgtyperet=<Value Unspecified>
+
+s_bundleName=<Value Unspecified>
+
+b_launchNETCA=<Value Unspecified>
+
+
+[oracle.networking.netsrv_9.2.0.4.0]
+b_net8ServerIsInstalling=<Value Unspecified>
+
+
+[oracle.assistants.dbma_9.2.0.1.0]
+OPTIONAL_CONFIG_TOOLS=<Value Unspecified>
+
+sl_migrateSIDDialogReturn=<Value Unspecified>
+
+s_sidToMigrate=<Value Unspecified>
+
+s_cfgtyperet=<Value Unspecified>
+
+b_rdbmsInstalling=<Value Unspecified>
+
+b_noMigration=<Value Unspecified>
+
+
+[oracle.emprod_9.2.0.1.0]
+s_cfgtyperet=<Value Unspecified>
+
+b_launchEMCA=<Value Unspecified>
+
+
+[oracle.utilities.util_9.2.0.4.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+b_rdbmsInstalling=<Value Unspecified>
+
+
+[oracle.options.intermedia.imserver_9.2.0.1.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.cartridges.locator_9.2.0.4.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.isearch.server_9.2.0.4.0]
+b_iAS=<Value Unspecified>
+
+
+[oracle.options.ano.sns_9.2.0.4.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.java.javavm_9.2.0.4.0]
+b_javavmIsInstalling=<Value Unspecified>
+
+
+[oracle.apache_9.2.0.1.0]
+OPTIONAL_CONFIG_TOOLS=<Value Unspecified>
+
+s_oracleSID=<Value Unspecified>
+
+s_jservPort=<Value Unspecified>
+
+s_apacheVersionNumber=<Value Unspecified>
+
+s_apachePortSSL=<Value Unspecified>
+
+s_apachePortNonSSL=<Value Unspecified>
+
+s_apachePort=<Value Unspecified>
+
+s_NLSLANG=<Value Required>
+
+s_LANGUAGE_TERRITORY=<Value Required>
+
+b_autoStartApache=<Value Unspecified>
+
+b_apacheInstalling=<Value Unspecified>
+
+s_topDir=<Value Unspecified>
+
+s_jvm=<Value Unspecified>
+
+ServerRoot=<Value Unspecified>
+
+JDK_HOME=<Value Unspecified>
+
+APACHE_HOME=<Value Unspecified>
+
+s_oracleApacheConfigFile=<Value Unspecified>
+
+s_oracleJservPropertiesFile=<Value Unspecified>
+
+
+[oracle.cartridges.context_9.2.0.4.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.soap.jserv_2.0.0.0.0a]
+s_soapPort=<Value Unspecified>
+
+
+[oracle.webdb.modplsql_3.0.9.8.3b]
+s_oracleApacheConfigFile=<Value Unspecified>
+
+plsql_cache_dir=<Value Unspecified>
+
+cookie_cache_dir=<Value Unspecified>
+
+APACHE_HOME=<Value Unspecified>
+
+
+[oracle.networking.netclt_9.2.0.4.0]
+s_cfgtyperet=<Value Unspecified>
+
+s_bundleName=<Value Unspecified>
+
+b_rdbmsInstalling=<Value Unspecified>
+
+b_net8ServerInstalling=<Value Unspecified>
+
+b_launchNETCA=<Value Unspecified>
+
+b_javavmIsInstalling=<Value Unspecified>
+
+b_cmanIsInstalling=<Value Unspecified>
+
+b_anoIsInstalling=<Value Unspecified>
+
+s_netCAInstalledProducts=<Value Unspecified>
+
+
+[oracle.rdbms.nid_9.2.0.4.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.emprod.agent_ext.emd_agentext_9.2.0.4.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.emprod.agent_ext.ows_agentext_9.2.0.1.0]
+s_apacheVersionNumber=<Value Unspecified>
+
+b_apacheInstalling=<Value Unspecified>
+
+
+[oracle.rdbms.ds_9.2.0.1.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.isearch.is_common_9.2.0.4.0]
+b_iAS=<Value Unspecified>
+
+
+[oracle.emprod.oemagent_9.2.0.1.0]
+s_cfgtyperet=<Value Unspecified>
+
+
+[oracle.emprod.oemagent.agentca_9.2.0.1.0]
+OPTIONAL_CONFIG_TOOLS=<Value Unspecified>
+
+s_cfgtyperet=<Value Unspecified>
+
+b_launchAgentCA=<Value Unspecified>
+
+
+[oracle.assistants.dbca_9.2.0.1.0]
+OPTIONAL_CONFIG_TOOLS=<Value Unspecified>
+
+s_serverInstallType=<Value Unspecified>
+
+s_responseFileName=<Value Unspecified>
+
+s_oidPasswd=<Value Unspecified>
+
+s_oidAdmin=<Value Unspecified>
+
+s_instType=<Value Unspecified>
+
+s_globalDBName=<Value Unspecified>
+
+s_dbRetChoice=<Value Unspecified>
+
+s_dbRetChar=<Value Unspecified>
+
+s_cfgtyperet=<Value Unspecified>
+
+ps_dbCharSet=<Value Unspecified>
+
+pb_askMountPoint=<Value Unspecified>
+
+b_showCharsetDialog=<Value Unspecified>
+
+b_rdbmsInstalling=<Value Unspecified>
+
+b_noMigration=<Value Unspecified>
+
+b_lowResource=<Value Unspecified>
+
+b_iAS=<Value Unspecified>
+
+b_createStarterDBReturn=<Value Unspecified>
+
+b_configureOid=<Value Unspecified>
+
+CLUSTER_SERVICES=<Value Unspecified>
+
+s_dbcaProgressOnly=<Value Unspecified>
+
+s_cfgname=<Value Unspecified>
+
+pn_softwareSize=<Value Unspecified>
+
+b_passwdDialog=<Value Unspecified>
+
+s_seedLocation=<Value Unspecified>
+
+ps_mountPoint=<Value Unspecified>
+
+pn_databaseSize=<Value Unspecified>
+
+s_templateValue=<Value Unspecified>
+
+s_dbSid=<Value Unspecified>
+
+s_mountPoint=<Value Unspecified>
+
+
+[oracle.networking.netca_9.2.0.4.0]
+OPTIONAL_CONFIG_TOOLS=<Value Unspecified>
+
+s_responseFileName=<Value Unspecified>
+
+s_netCAInstalledProtocols=<Value Unspecified>
+
+s_netCAInstalledProducts=<Value Unspecified>
+
+s_cfgtyperet=<Value Unspecified>
+
+b_launchNETCA=<Value Unspecified>
+
+
+[oracle.bc4j_9.0.2.692.1]
+s_oracleJservPropertiesFile=<Value Unspecified>
+
+s_oc4jdeployini=<Value Unspecified>
+
+APACHE_HOME=<Value Unspecified>
+
+
+[oracle.rdbms.ovm_9.2.0.1.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.soap.srv_2.0.0.0.0a]
+b_serverInstalled=<Value Unspecified>
+
+
+[oracle.soap.cli_2.0.0.0.0a]
+b_serverInstalled=<Value Unspecified>
+
+s_hostPort=<Value Unspecified>
+
+
+[oracle.jdk_1.4.2.0.0]
+s_jdkVersion=<Value Unspecified>
+
+isNT=<Value Unspecified>
+
+JRE_LIBHOME=<Value Unspecified>
+
+JRE_LIB=<Value Unspecified>
+
+JRE_BIN=<Value Unspecified>
+
+JDK_HOME=<Value Unspecified>
+
+
+[oracle.java.j2ee.core_9.2.0.1.0]
+JDK_HOME=<Value Unspecified>
+
+
+[oracle.rdbms.common_schema_9.2.0.4.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.rsf_9.2.0.1.0]
+s_serverInstallType=<Value Unspecified>
+
+s_bundleName=<Value Unspecified>
+
+
+[oracle.options.ops.opsca_9.2.0.1.0]
+OPTIONAL_CONFIG_TOOLS=<Value Unspecified>
+
+s_serverInstallType=<Value Unspecified>
+
+s_cfgtyperet=<Value Unspecified>
+
+
+[oracle.rsf.nlsrtl_rsf_9.2.0.4.0]
+s_serverInstallType=<Value Unspecified>
+
+
+[oracle.options.ops.pfs_9.2.0.4.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.oid.tools_9.2.0.1.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.rsf.ssl_rsf_9.2.0.4.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.rsf.rdbms_rsf_9.2.0.4.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.rsf.xdk_rsf_9.2.0.4.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.install.instcommon_9.2.0.4.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.doc.unixdoc_9.2.0.1.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.rsf.hybrid_9.2.0.1.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.apache.jserv_1.1.0.0.0g]
+s_soapPort=<Value Unspecified>
+
+s_jservPort=<Value Unspecified>
+
+s_LANGUAGE_TERRITORY=<Value Required>
+
+b_autoPortDetect=<Value Unspecified>
+
+s_topDir=<Value Unspecified>
+
+s_jvm=<Value Unspecified>
+
+APACHE_HOME=<Value Unspecified>
+
+s_oracleApacheConfigFile=<Value Unspecified>
+
+s_oracleJservPropertiesFile=<Value Unspecified>
+
+
+[oracle.apache.jsdk_2.0.0.0.0d]
+s_topDir=<Value Unspecified>
+
+
+[oracle.rsf.net_rsf_9.2.0.4.0]
+s_bundleName=<Value Unspecified>
+
+
+[oracle.ocs4j_2.1.0.0.0a]
+s_cachePort=<Value Unspecified>
+
+
+[oracle.rdbms.aqapi_9.2.0.4.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.java.sqlj.sqljruntime_9.2.0.4.0]
+s_OPSSelectedNodes=<Value Unspecified>
+
+
+[oracle.apache.apache_1.3.22.0.0a]
+OPTIONAL_CONFIG_TOOLS=<Value Unspecified>
+
+sl_OHs=<Value Unspecified>
+
+s_apacheServerAppendText=<Value Required>
+
+s_apachePortSSL=<Value Unspecified>
+
+s_apachePortNonSSL=<Value Unspecified>
+
+s_apachePort=<Value Unspecified>
+
+s_NLSLANG=<Value Required>
+
+b_autoStartApache=<Value Unspecified>
+
+b_autoPortDetect=<Value Unspecified>
+
+s_topDir=<Value Unspecified>
+
+ServerRoot=<Value Unspecified>
+
+APACHE_HOME=<Value Unspecified>
+
+
+[oracle.swd.jre_1.4.2.0.0]
+PROD_HOME=<Value Unspecified>
+
+s_OPSSelectedNodes=<Value Unspecified>" > $SCRIPT_DIR/enterprise.rsp
 
 # xhost +
 xhost +
