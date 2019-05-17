@@ -33,6 +33,15 @@
 #  Make sure XMING_IP is set to your workstation ip
 #
 
+# Source env
+if [ -f ./env ]; then
+ . ./env
+else
+ echo "env file not found, run setup to create env file"
+ exit 1
+fi
+
+
 # Execute below command to allow root ftp or simply remove "root" from /etc/ftpusers
 cp /etc/ftpusers /etc/ftpusers.orig
 sed -e '/root/s/^/#/g' /etc/ftpusers.orig > /etc/ftpusers
@@ -52,16 +61,9 @@ chkconfig inet on
 # Database software installation, run as root user
 #
 
-O_USER=oracle
-O_PASS=oracle123
-ORACLE_BASE=/opt/app/oracle
-ORACLE_HOME=/opt/app/oracle/product/8.1.7
 JAVA_HOME=/usr/local/java
-ORACLE_DB=/ora/db001
 JAVA_SW=/tmp/jdk-1_2_2_017-linux-i586.tar.gz
 ORACLE_SW1=/tmp/linux81701.tar.bz2
-ORACLE_SW_STG=/tmp/ora8i
-INST_ORACLE_SW_SHELL=/tmp/inst_ora_sw.sh
 XMING_IP=192.168.1.16
 
 # user and groups creation
@@ -128,10 +130,10 @@ echo "mkdir $ORACLE_SW_STG
 cd $ORACLE_SW_STG
 bunzip2 -cd $ORACLE_SW1 | tar xvf -
 export DISPLAY=$XMING_IP:0.0
-$ORACLE_SW_STG/Disk1/runInstaller" > $INST_ORACLE_SW_SHELL
+$ORACLE_SW_STG/Disk1/runInstaller" > $SCRIPT_DIR/inst_ora_sw
 
 # Adding execute permission to all users
-chmod a+x $INST_ORACLE_SW_SHELL
+chmod a+x $SCRIPT_DIR/inst_ora_sw
 
 # unzip; set DISPLAY; runInstaller as oracle
-su - $O_USER -c $INST_ORACLE_SW_SHELL
+su - $O_USER -c $SCRIPT_DIR/inst_ora_sw
