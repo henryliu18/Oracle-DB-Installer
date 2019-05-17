@@ -14,12 +14,14 @@
 # Database patchset installation, run as root user
 #
 
-O_USER=oracle
-ORACLE_BASE=/opt/app/oracle
-ORACLE_HOME=/opt/app/oracle/product/8.1.7
-ORACLE_SW1=/tmp/lnx32_8174_patchset.tar
-ORACLE_SW_STG=/tmp/8174
-INST_ORACLE_SW_SHELL=/tmp/inst_ora_sw.sh
+# Source env
+if [ -f ./env ]; then
+ . ./env
+else
+ echo "env file not found, run setup to create env file"
+ exit 1
+fi
+
 XMING_IP=192.168.1.16
 
 # Making shell script for oracle installer
@@ -27,10 +29,10 @@ echo "mkdir $ORACLE_SW_STG
 cd $ORACLE_SW_STG
 tar xvf $ORACLE_SW1
 export DISPLAY=$XMING_IP:0.0
-$ORACLE_BASE/oui/install/runInstaller" > $INST_ORACLE_SW_SHELL
+$ORACLE_BASE/oui/install/runInstaller" > $SCRIPT_DIR/inst_ora_sw
 
 # Adding execute permission to all users
-chmod a+x $INST_ORACLE_SW_SHELL
+chmod a+x $SCRIPT_DIR/inst_ora_sw
 
 # unzip; set DISPLAY; runInstaller as oracle
-su - $O_USER -c $INST_ORACLE_SW_SHELL
+su - $O_USER -c $SCRIPT_DIR/inst_ora_sw
