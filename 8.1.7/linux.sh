@@ -43,19 +43,28 @@ fi
 
 
 # Execute below command to allow root ftp or simply remove "root" from /etc/ftpusers
-cp /etc/ftpusers /etc/ftpusers.orig
-sed -e '/root/s/^/#/g' /etc/ftpusers.orig > /etc/ftpusers
+if [ ! -f /etc/ftpusers.orig ]; then
+  cp /etc/ftpusers /etc/ftpusers.orig
+  sed -e '/root/s/^/#/g' /etc/ftpusers.orig > /etc/ftpusers
+fi
 
 # Execute below command to allow root telnet or simply comment out "auth       required    /lib/security/pam_securetty.so" from /etc/pam.d/login
-cp /etc/pam.d/login /etc/pam.d/login.orig
-sed -e '/pam_securetty.so/s/^/#/g' /etc/pam.d/login.orig > /etc/pam.d/login
+if [ ! -f /etc/pam.d/login.orig ]; then
+  cp /etc/pam.d/login /etc/pam.d/login.orig
+  sed -e '/pam_securetty.so/s/^/#/g' /etc/pam.d/login.orig > /etc/pam.d/login
+fi
 
 # Only if telnetd and ftpd not up
-rpm -ivh /mnt/RedHat/RPMS/telnet-server-0.16-6.i386.rpm
-rpm -ivh /mnt/RedHat/RPMS/wu-ftpd-2.6.0-3.i386.rpm
-rpm -ivh /mnt/RedHat/RPMS/inetd-0.16-4.i386.rpm
-/etc/rc.d/init.d/inet start
-chkconfig inet on
+if [ -d "/mnt/cdrom/RedHat/RPMS" ]; then
+  rpm -ivh /mnt/RedHat/RPMS/telnet-server-0.16-6.i386.rpm
+  rpm -ivh /mnt/RedHat/RPMS/wu-ftpd-2.6.0-3.i386.rpm
+  rpm -ivh /mnt/RedHat/RPMS/inetd-0.16-4.i386.rpm
+  /etc/rc.d/init.d/inet start
+  chkconfig inet on
+else
+  echo "RedHat iso not mounted"
+  exit 1
+fi
 
 #
 # Database software installation, run as root user
@@ -81,9 +90,14 @@ EOF
 /etc/rc.d/init.d/ipchains stop
 chkconfig ipchains off
 
-cd /usr/local
-tar xvfz $JAVA_SW
-ln -s jdk1.2.2 java
+if [ -f "$JAVA_SW" ]; then
+  cd /usr/local
+  tar xvfz $JAVA_SW
+  ln -s jdk1.2.2 java
+else
+  echo "JAVA Software not found - $JAVA_SW"
+  exit 1
+fi
 
 echo "unset USERNAME
 ORACLE_BASE=$ORACLE_BASE
