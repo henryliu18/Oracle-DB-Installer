@@ -147,6 +147,11 @@ if [ "$O_VER" = "18c" ] || [ "$O_VER" = "12c" ]; then
   PDB=${PDB:-pdb1}
 fi
 
+if [ "$O_VER" = "8.1.7" ] || [ "$O_VER" = "9.2" ]; then
+  echo "XMING IP [192.168.56.1]: "; read XMING_IP
+  XMING_IP=${XMING_IP:-192.168.56.1}
+fi
+
 echo "NIC=${NIC}
 O_USER=${O_USER}
 O_PASS=${O_PASS}
@@ -168,7 +173,8 @@ JAVA_SW=${JAVA_SW}
 SCRIPT_DIR=${SCRIPT_DIR}
 ORATAB=${ORATAB}
 PDB=${PDB}
-CDB=${CDB}" > `dirname $0`/env
+CDB=${CDB}
+XMING_IP=${XMING_IP}" > `dirname $0`/env
 
 if [ $? -eq 0 ]; then
  echo "**************************************************************"
