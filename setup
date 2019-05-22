@@ -3,7 +3,11 @@
 if [ "$1" = "env" ]; then
   bash `dirname $0`/env.sh
 elif [ "$1" = "sw" ]; then
-  bash `dirname $0`/linux_x64.sh
+  if [ -f `dirname $0`/linux_x64.sh ]; then
+    bash `dirname $0`/linux.sh
+  else
+    bash `dirname $0`/linux_x64.sh
+  fi
 elif [ "$1" = "db" ]; then
   command bash `dirname $0`/linux_x64.sh && \
   command bash `dirname $0`/netca.sh && \
