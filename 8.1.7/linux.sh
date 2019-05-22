@@ -42,38 +42,38 @@ else
 fi
 
 
-# Execute below command to allow root ftp or simply remove "root" from /etc/ftpusers
-if [ ! -f /etc/ftpusers.orig ]; then
-  cp /etc/ftpusers /etc/ftpusers.orig
-  sed -e '/root/s/^/#/g' /etc/ftpusers.orig > /etc/ftpusers
-fi
+## Execute below command to allow root ftp or simply remove "root" from /etc/ftpusers
+#if [ ! -f /etc/ftpusers.orig ]; then
+#  cp /etc/ftpusers /etc/ftpusers.orig
+#  sed -e '/root/s/^/#/g' /etc/ftpusers.orig > /etc/ftpusers
+#fi
 
-# Execute below command to allow root telnet or simply comment out "auth       required    /lib/security/pam_securetty.so" from /etc/pam.d/login
-if [ ! -f /etc/pam.d/login.orig ]; then
-  cp /etc/pam.d/login /etc/pam.d/login.orig
-  sed -e '/pam_securetty.so/s/^/#/g' /etc/pam.d/login.orig > /etc/pam.d/login
-fi
+## Execute below command to allow root telnet or simply comment out "auth       required    /lib/security/pam_securetty.so" from /etc/pam.d/login
+#if [ ! -f /etc/pam.d/login.orig ]; then
+#  cp /etc/pam.d/login /etc/pam.d/login.orig
+#  sed -e '/pam_securetty.so/s/^/#/g' /etc/pam.d/login.orig > /etc/pam.d/login
+#fi
 
-# Only if telnetd and ftpd not up
-if [ -d "/mnt/cdrom/RedHat/RPMS" ]; then
-  rpm -ivh /mnt/cdrom/RedHat/RPMS/telnet-server-0.16-6.i386.rpm
-  rpm -ivh /mnt/cdrom/RedHat/RPMS/wu-ftpd-2.6.0-3.i386.rpm
-  rpm -ivh /mnt/cdrom/RedHat/RPMS/inetd-0.16-4.i386.rpm
-  /etc/rc.d/init.d/inet start
-  chkconfig inet on
-else
-  echo "RedHat iso not mounted"
-  exit 1
-fi
+## Only if telnetd and ftpd not up
+#if [ -d "/mnt/cdrom/RedHat/RPMS" ]; then
+#  rpm -ivh /mnt/cdrom/RedHat/RPMS/telnet-server-0.16-6.i386.rpm
+#  rpm -ivh /mnt/cdrom/RedHat/RPMS/wu-ftpd-2.6.0-3.i386.rpm
+#  rpm -ivh /mnt/cdrom/RedHat/RPMS/inetd-0.16-4.i386.rpm
+#  /etc/rc.d/init.d/inet start
+#  chkconfig inet on
+#else
+#  echo "RedHat iso not mounted"
+#  exit 1
+#fi
 
 #
 # Database software installation, run as root user
 #
 
-JAVA_HOME=/usr/local/java
-JAVA_SW=/tmp/jdk-1_2_2_017-linux-i586.tar.gz
-ORACLE_SW1=/tmp/linux81701.tar.bz2
-XMING_IP=192.168.56.1
+#JAVA_HOME=/usr/local/java
+#JAVA_SW=/tmp/jdk-1_2_2_017-linux-i586.tar.gz
+#ORACLE_SW1=/tmp/linux81701.tar.bz2
+#XMING_IP=192.168.56.1
 
 # user and groups creation
 groupadd -g 54321 oinstall
