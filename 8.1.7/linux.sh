@@ -55,17 +55,16 @@ fi
 #fi
 
 ## Only if telnetd and ftpd not up
-if [ -d "/mnt/cdrom/RedHat/RPMS" ]; then
-  rpm -ivh /mnt/cdrom/RedHat/RPMS/unzip-5.40-2.i386.rpm
+#if [ -d "/mnt/cdrom/RedHat/RPMS" ]; then
 #  rpm -ivh /mnt/cdrom/RedHat/RPMS/telnet-server-0.16-6.i386.rpm
 #  rpm -ivh /mnt/cdrom/RedHat/RPMS/wu-ftpd-2.6.0-3.i386.rpm
 #  rpm -ivh /mnt/cdrom/RedHat/RPMS/inetd-0.16-4.i386.rpm
 #  /etc/rc.d/init.d/inet start
 #  chkconfig inet on
-else
-  echo "RedHat iso not mounted"
-  exit 1
-fi
+#else
+#  echo "RedHat iso not mounted"
+#  exit 1
+#fi
 
 #
 # Database software installation, run as root user
