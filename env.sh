@@ -69,7 +69,7 @@ elif [ "$O_VER" = "9.2" ]; then
   fi
 elif [ "$O_VER" = "8.1.7" ]; then
   echo "Oracle Database bz2 file [/tmp/linux81701.tar.bz2]: "; read ORACLE_SW1
-  ORACLE_SW1=${ORACLE_SW1:-/tmp/10201_database_linux_x86_64.cpio}
+  ORACLE_SW1=${ORACLE_SW1:-/tmp/linux81701.tar.bz2}
   if [ ! -f $ORACLE_SW1 ]; then
    echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
    exit 1
