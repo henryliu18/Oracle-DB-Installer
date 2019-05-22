@@ -73,7 +73,7 @@ fi
 JAVA_HOME=/usr/local/java
 JAVA_SW=/tmp/jdk-1_2_2_017-linux-i586.tar.gz
 ORACLE_SW1=/tmp/linux81701.tar.bz2
-XMING_IP=192.168.1.16
+XMING_IP=192.168.56.1
 
 # user and groups creation
 groupadd -g 54321 oinstall
