@@ -308,7 +308,6 @@ INSTALL_TYPE="EE"
 " > $SCRIPT_DIR/enterprise.rsp
 
 # xhost +
-xhost +
 
 echo "$ORACLE_SW_STG/Disk1/runInstaller -waitforcompletion -responseFile $SCRIPT_DIR/enterprise.rsp -silent" > ${SCRIPT_DIR}/inst_ora_sw2
 # Adding execute permission to all users
