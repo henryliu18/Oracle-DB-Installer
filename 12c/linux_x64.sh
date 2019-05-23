@@ -164,7 +164,6 @@ unzip -oq $ORACLE_SW1
 unzip -oq $ORACLE_SW2
 #runInstaller SILENT
 $ORACLE_SW_STG/database/runInstaller -ignorePrereq -waitforcompletion -silent  \
-    -responseFile $ORACLE_SW_STG/database/response/db_install.rsp              \
     oracle.install.option=INSTALL_DB_SWONLY                                    \
     ORACLE_HOSTNAME=\${ORACLE_HOSTNAME}                                        \
     UNIX_GROUP_NAME=oinstall                                                   \
