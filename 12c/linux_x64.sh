@@ -172,11 +172,11 @@ $ORACLE_SW_STG/database/runInstaller -ignorePrereq -waitforcompletion -silent  \
     ORACLE_HOME=${ORACLE_HOME}                                                 \
     ORACLE_BASE=${ORACLE_BASE}                                                 \
     oracle.install.db.InstallEdition=EE                                        \
-    oracle.install.db.OSDBA_GROUP=dba                                          \
-    oracle.install.db.OSBACKUPDBA_GROUP=dba                                    \
-    oracle.install.db.OSDGDBA_GROUP=dba                                        \
-    oracle.install.db.OSKMDBA_GROUP=dba                                        \
-    oracle.install.db.OSRACDBA_GROUP=dba                                       \
+    oracle.install.db.DBA_GROUP=dba                                          \
+    oracle.install.db.OPER_GROUP=dba                                           \
+    oracle.install.db.BACKUPDBA_GROUP=dba                                    \
+    oracle.install.db.DGDBA_GROUP=dba                                        \
+    oracle.install.db.KMDBA_GROUP=dba                                        \
     SECURITY_UPDATES_VIA_MYORACLESUPPORT=false                                 \
     DECLINE_SECURITY_UPDATES=true" > ${SCRIPT_DIR}/inst_oracle_sw
 
