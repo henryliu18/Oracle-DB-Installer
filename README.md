@@ -1,7 +1,6 @@
 # Oracle-DB-Installer
-Your Oracle database automated installer from 8i to 18c
 
-1. setup env
+1. setup env </ br>
 env - collect inputs and put in env file
 
 2. setup sw|db|clean
