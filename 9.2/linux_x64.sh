@@ -41,6 +41,7 @@ else
   value=$( grep -ic "refused" /tmp/xtest )
   if [ "$value" -eq 1 ]; then
     echo "exiting, check XMING or firewall or X0.hosts file"
+    exit 1
   else
 echo "# CentOS-Base.repo
 #
