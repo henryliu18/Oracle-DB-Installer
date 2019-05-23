@@ -34,3 +34,6 @@ chmod a+x $SCRIPT_DIR/inst_ora_sw
 
 # unzip; set DISPLAY; runInstaller as oracle
 su - $O_USER -c $SCRIPT_DIR/inst_ora_sw
+
+# cleanup
+rm -f $SCRIPT_DIR/inst_ora_sw
