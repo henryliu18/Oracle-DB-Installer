@@ -28,6 +28,19 @@ if [ "$O_VER" = "18c" ]; then
    echo -e "${RED}$ORACLE_SW not found, exiting${OFF}"
    exit 1
   fi
+elif [ "$O_VER" = "12c" ]; then
+  echo "Oracle Database zip file [/tmp/p17694377_121020_Linux-x86-64_1of8.zip]: "; read ORACLE_SW1
+  ORACLE_SW1=${ORACLE_SW1:-/tmp/p17694377_121020_Linux-x86-64_1of8.zip}
+  if [ ! -f $ORACLE_SW1 ]; then
+   echo -e "${RED}$ORACLE_SW1 not found, exiting${OFF}"
+   exit 1
+  fi
+  echo "Oracle Database zip file [/tmp/p17694377_121020_Linux-x86-64_2of8.zip]: "; read ORACLE_SW2
+  ORACLE_SW2=${ORACLE_SW2:-/tmp/p17694377_121020_Linux-x86-64_2of8.zip}
+  if [ ! -f $ORACLE_SW2 ]; then
+   echo -e "${RED}$ORACLE_SW2 not found, exiting${OFF}"
+   exit 1
+  fi
 elif [ "$O_VER" = "11.2" ]; then
   echo "Oracle Database zip file [/tmp/linux.x64_11gR2_database_1of2.zip]: "; read ORACLE_SW1
   ORACLE_SW1=${ORACLE_SW1:-/tmp/linux.x64_11gR2_database_1of2.zip}
