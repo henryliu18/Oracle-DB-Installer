@@ -134,6 +134,9 @@ SCRIPT_DIR=${SCRIPT_DIR:-/tmp}
 if [ "$O_VER" = "11.2" ]; then
   echo "Location of staging directory [/tmp/ora11g]: "; read ORACLE_SW_STG
   ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora11g}
+elif [ "$O_VER" = "12c" ]; then
+  echo "Location of staging directory [/tmp/ora12c]: "; read ORACLE_SW_STG
+  ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora10g}
 elif [ "$O_VER" = "10.2" ]; then
   echo "Location of staging directory [/tmp/ora10g]: "; read ORACLE_SW_STG
   ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora10g}
