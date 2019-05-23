@@ -43,7 +43,7 @@ fi
 
 # XMING checks
 export DISPLAY=$XMING_IP:0.0
-(xdpyinfo>/dev/null) &
+(xdpyinfo>/tmp/xtest 2>&1) &
 my_pid=$!
 
 i=0
@@ -60,9 +60,13 @@ do
 done
 
 if [ "$timeout" = "yes" ]; then
-  echo "exiting, check XMING or firewall"
+  echo "exiting, check XMING or firewall or X0.hosts file"
   exit 1
 else
+  value=$( grep -ic "refused" /tmp/xtest )
+  if [ "$value" -eq 1 ]; then
+    echo "exiting, check XMING or firewall or X0.hosts file"
+  else
 #
 # Database software installation, run as root user
 #
@@ -144,4 +148,5 @@ chmod a+x $SCRIPT_DIR/inst_ora_sw
 # unzip; set DISPLAY; runInstaller as oracle
 su - $O_USER -c $SCRIPT_DIR/inst_ora_sw
 
+fi
 fi
