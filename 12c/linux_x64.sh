@@ -158,11 +158,12 @@ export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
 export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib" >> /home/$O_USER/.bash_profile
 
 # Create a shell script to unzip and runInstaller
-echo "cd $ORACLE_SW_STG
+echo "mkdir $ORACLE_SW_STG
+cd $ORACLE_SW_STG
 unzip -oq $ORACLE_SW1
 unzip -oq $ORACLE_SW2
 #runInstaller SILENT
-database/runInstaller -ignorePrereq -waitforcompletion -silent                        \
+$ORACLE_SW_STG/database/runInstaller -ignorePrereq -waitforcompletion -silent                        \
     -responseFile ${ORACLE_HOME}/install/response/db_install.rsp               \
     oracle.install.option=INSTALL_DB_SWONLY                                    \
     ORACLE_HOSTNAME=\${ORACLE_HOSTNAME}                                         \
