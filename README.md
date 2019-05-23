@@ -1,6 +1,6 @@
 # Oracle-DB-Installer
 
-1. setup env </ br>
+1. setup env <br />
 env - collect inputs and put in env file
 
 2. setup sw|db|clean
