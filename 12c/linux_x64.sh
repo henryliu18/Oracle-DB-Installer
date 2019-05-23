@@ -193,4 +193,4 @@ su - $O_USER -c ${SCRIPT_DIR}/inst_oracle_sw
 $ORACLE_APP_ROOT/oraInventory/orainstRoot.sh
 $ORACLE_HOME/root.sh
 
-#rm -f ${SCRIPT_DIR}/inst_oracle_sw
+rm -f ${SCRIPT_DIR}/inst_oracle_sw
