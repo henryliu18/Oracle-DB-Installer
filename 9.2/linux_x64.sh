@@ -305,6 +305,7 @@ TOPLEVEL_COMPONENT={"oracle.server","9.2.0.4.0"}
 NEXT_SESSION=true
 COMPONENT_LANGUAGES={"en"}
 INSTALL_TYPE="EE"
+s_cfgtyperet=5
 " > $SCRIPT_DIR/enterprise.rsp
 
 # xhost +
