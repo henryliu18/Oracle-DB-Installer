@@ -159,7 +159,7 @@ export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib" >> /home/$O_USER/.ba
 
 # Create a shell script to unzip and runInstaller
 echo "cd $ORACLE_HOME
-unzip -oq $ORACLE_SW
+unzip -oq $ORACLE_SW1
 #runInstaller SILENT
 ./runInstaller -ignorePrereq -waitforcompletion -silent                        \
     -responseFile ${ORACLE_HOME}/install/response/db_install.rsp               \
@@ -182,7 +182,8 @@ unzip -oq $ORACLE_SW
 # Adding execute permission to all users
 chmod a+x ${SCRIPT_DIR}/inst_oracle_sw
 #chown $O_USER:oinstall $ORACLE_SW
-chmod a+r $ORACLE_SW
+chmod a+r $ORACLE_SW1
+chmod a+r $ORACLE_SW2
 
 # unzip; runInstaller as oracle
 su - $O_USER -c ${SCRIPT_DIR}/inst_oracle_sw
