@@ -7,6 +7,7 @@
 
 # MUST HAVE XMING or directly logged in console GUI as runInstaller will initiate X11 session even
 # in SILENT mode
+# todo -> software only still not working to be fixed
 
 # Source env
 if [ -f ./env ]; then
