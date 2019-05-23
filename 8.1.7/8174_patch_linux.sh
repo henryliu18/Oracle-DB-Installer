@@ -22,8 +22,6 @@ else
  exit 1
 fi
 
-XMING_IP=192.168.1.16
-
 # Making shell script for oracle installer
 echo "mkdir $ORACLE_SW_STG
 cd $ORACLE_SW_STG
