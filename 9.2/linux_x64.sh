@@ -18,7 +18,7 @@ fi
 
 # XMING checks
 export DISPLAY=$XMING_IP:0.0
-(xdpyinfo>/dev/null) &
+(xdpyinfo>/tmp/xtest 2>&1) &
 my_pid=$!
 
 i=0
@@ -35,9 +35,13 @@ do
 done
 
 if [ "$timeout" = "yes" ]; then
-  echo "exiting, check XMING or firewall"
+  echo "exiting, check XMING or firewall or X0.hosts file"
   exit 1
 else
+  value=$( grep -ic "refused" /tmp/xtest )
+  if [ "$value" -eq 1 ]; then
+    echo "exiting, check XMING or firewall or X0.hosts file"
+  else
 echo "# CentOS-Base.repo
 #
 # CentOS-4 is past End of Life ... use at your own risk
@@ -1540,4 +1544,5 @@ rm -f ${SCRIPT_DIR}/inst_ora_sw
 rm -f ${SCRIPT_DIR}/inst_ora_sw2
 rm -f ${SCRIPT_DIR}/enterprise.rsp
 rm -rf $ORACLE_SW_STG
+fi
 fi
