@@ -136,7 +136,7 @@ if [ "$O_VER" = "11.2" ]; then
   ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora11g}
 elif [ "$O_VER" = "12c" ]; then
   echo "Location of staging directory [/tmp/ora12c]: "; read ORACLE_SW_STG
-  ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora10g}
+  ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora12c}
 elif [ "$O_VER" = "10.2" ]; then
   echo "Location of staging directory [/tmp/ora10g]: "; read ORACLE_SW_STG
   ORACLE_SW_STG=${ORACLE_SW_STG:-/tmp/ora10g}
