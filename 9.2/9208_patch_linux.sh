@@ -41,12 +41,12 @@ NEXT_SESSION=true
 NEXT_SESSION_ON_FAIL=true
 SHOW_DEINSTALL_CONFIRMATION=true
 SHOW_DEINSTALL_PROGRESS=true
-ACCEPT_LICENSE_AGREEMENT=true" > /tmp/patchset-9208.rsp
+ACCEPT_LICENSE_AGREEMENT=true" > $SCRIPT_DIR/patchset-9208.rsp
 
 echo "mkdir $SCRIPT_DIR/9208
 cd $SCRIPT_DIR/9208
-unzip /tmp/p4547809_92080_Linux-x86-64.zip
-$SCRIPT_DIR/9208/Disk1/runInstaller -silent -responseFile /tmp/patchset-9208.rsp
+unzip $SCRIPT_DIR/p4547809_92080_Linux-x86-64.zip
+$SCRIPT_DIR/9208/Disk1/runInstaller -silent -responseFile $SCRIPT_DIR/patchset-9208.rsp
 " > ${SCRIPT_DIR}/inst_ora_sw
 
 # Adding execute permission to all users
