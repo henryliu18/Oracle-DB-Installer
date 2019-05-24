@@ -302,10 +302,10 @@ UNIX_GROUP_NAME=\"oinstall\"
 FROM_LOCATION="$ORACLE_SW_STG/Disk1/stage/products.jar"
 ORACLE_HOME=$ORACLE_HOME
 ORACLE_HOME_NAME=\"OraHome92\"
-#TOPLEVEL_COMPONENT={"oracle.server","9.2.0.4.0"}
-#NEXT_SESSION=true
-#COMPONENT_LANGUAGES={"en"}
-#INSTALL_TYPE="EE"
+TOPLEVEL_COMPONENT={"oracle.server","9.2.0.4.0"}
+NEXT_SESSION=true
+COMPONENT_LANGUAGES={"en"}
+INSTALL_TYPE="EE"
 s_cfgtyperet=\"Software Only\"
 SHOW_END_SESSION_PAGE=true" > $SCRIPT_DIR/enterprise.rsp
 
