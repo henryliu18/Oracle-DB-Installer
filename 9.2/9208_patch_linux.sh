@@ -16,16 +16,37 @@ fi
 mv /usr/bin/gcc /usr/bin/gcc34
 mv /usr/bin/gcc32 /usr/bin/gcc
 
+echo "RESPONSEFILE_VERSION=2.2.1.0.0
+UNIX_GROUP_NAME=\"oinstall\"
+FROM_LOCATION=\"$SCRIPT_DIR/9208/Disk1/stage/products.xml\"
+ORACLE_HOME=\"$ORACLE_HOME\"
+ORACLE_HOME_NAME="OraHome92"
+TOPLEVEL_COMPONENT={\"oracle.server\",\"9.2.0.8.0\"}
+DEINSTALL_LIST={\"oracle.server\",\"9.2.0.8.0\"}
+SHOW_SPLASH_SCREEN=true
+SHOW_WELCOME_PAGE=false
+SHOW_COMPONENT_LOCATIONS_PAGE=false
+SHOW_CUSTOM_TREE_PAGE=false
+SHOW_SUMMARY_PAGE=true
+SHOW_INSTALL_PROGRESS_PAGE=true
+SHOW_REQUIRED_CONFIG_TOOL_PAGE=true
+SHOW_CONFIG_TOOL_PAGE=true
+SHOW_XML_PREREQ_PAGE=true
+SHOW_RELEASE_NOTES=true
+SHOW_END_OF_INSTALL_MSGS=true
+SHOW_ROOTSH_CONFIRMATION=true
+SHOW_END_SESSION_PAGE=true
+SHOW_EXIT_CONFIRMATION=true
+NEXT_SESSION=true
+NEXT_SESSION_ON_FAIL=true
+SHOW_DEINSTALL_CONFIRMATION=true
+SHOW_DEINSTALL_PROGRESS=true
+ACCEPT_LICENSE_AGREEMENT=true" > /tmp/patchset-9208.rsp
+
 echo "mkdir $SCRIPT_DIR/9208
 cd $SCRIPT_DIR/9208
 unzip /tmp/p4547809_92080_Linux-x86-64.zip
-$SCRIPT_DIR/9208/Disk1/runInstaller -silent \
-UNIX_GROUP_NAME=\"oinstall\" \
-FROM_LOCATION="$SCRIPT_DIR/9208/Disk1/stage/products.xml" \
-ORACLE_HOME=$ORACLE_HOME \
-ORACLE_HOME_NAME=\"OraHome92\" \
-TOPLEVEL_COMPONENT={\"oracle.server\",\"9.2.0.8.0\"} \
-NEXT_SESSION=true
+$SCRIPT_DIR/9208/Disk1/runInstaller -silent -responseFile /tmp/patchset-9208.rsp
 " > ${SCRIPT_DIR}/inst_ora_sw
 
 # Adding execute permission to all users
