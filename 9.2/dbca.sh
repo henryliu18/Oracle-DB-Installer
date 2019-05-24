@@ -40,7 +40,7 @@ else
     echo "exiting, check XMING or firewall or X0.hosts file"
     exit 1
   else
-echo "dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname $ORACLE_SID -sid $ORACLE_SID \
+echo "dbca -silent -createDatabase -templateName General_Purpose.dbc -gdbname $CDB -sid $CDB \
 -datafileJarLocation $ORACLE_HOME/assistants/dbca/templates -datafileDestination $ORACLE_DB -responseFile NO_VALUE \
 -characterSet AL32UTF8" > ${SCRIPT_DIR}/run_dbca
 chmod a+x ${SCRIPT_DIR}/run_dbca
