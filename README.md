@@ -12,6 +12,9 @@ XMING is required for version 8.1.7 and 9.2, XMING connectivity prechecks includ
 <br />
 Oracle 8.1.7 on Redhat 6.2 (Zoot) fully tested OK!<br />
 Oracle   9.2 on CentOS 4.7 fully tested OK!<br />
+-Oracle 9i zip files<br />
+-XMING<br />
+-Internet for yum repos<br />
 Oracle  10.2 on CentOS 5.5 fully tested OK!<br />
 Oracle  11.2 on CentOS 7.6 fully tested OK!<br />
 Oracle  12.1 on CentOS 7.6 fully tested OK!<br />
