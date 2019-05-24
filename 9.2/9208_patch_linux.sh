@@ -10,7 +10,10 @@ else
  exit 1
 fi
 
-
+if [ -f $SCRIPT_DIR/p4547809_92080_Linux-x86-64.zip ]; then
+  echo "patch file not found here -> $SCRIPT_DIR/p4547809_92080_Linux-x86-64.zip"
+  exit
+else
 # do patching here
 # Replace gcc 3.4 with gcc 3.2 - root task
 mv /usr/bin/gcc /usr/bin/gcc34
@@ -57,3 +60,5 @@ su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 # Revert gcc 3.4 from gcc 3.2
 mv /usr/bin/gcc /usr/bin/gcc32
 mv /usr/bin/gcc34 /usr/bin/gcc
+
+fi
