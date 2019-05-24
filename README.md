@@ -10,12 +10,24 @@ clean - shutdown db and listener, delete everything like a boss<br />
 <br />
 XMING is required for version 8.1.7 and 9.2, XMING connectivity prechecks included in scipts<br />
 <br />
+
 Oracle 8.1.7 on Redhat 6.2 (Zoot) fully tested OK!<br />
+-Oracle 8.1.7 zip<br />
+-Sun JDK 1.2.2 zip<br />
+-XMING on pc<br />
+-RedHat 6.2 iso mounted to /mnt<br />
+-Oracle-DB-Installer zip from Git<br />
+
 Oracle   9.2 on CentOS 4.7 fully tested OK!<br />
--Oracle 9i zip files<br />
--XMING<br />
+-Oracle 9i zip<br />
+-XMING on pc<br />
 -Internet for yum repos<br />
+-Oracle-DB-Installer zip from Git<br />
+
 Oracle  10.2 on CentOS 5.5 fully tested OK!<br />
+
 Oracle  11.2 on CentOS 7.6 fully tested OK!<br />
+
 Oracle  12.1 on CentOS 7.6 fully tested OK!<br />
+
 Oracle  18.1 on CentOS 7.6 fully tested OK!<br />
