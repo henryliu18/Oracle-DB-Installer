@@ -17,6 +17,9 @@ if [ ! -f $SCRIPT_DIR/p4547809_92080_Linux-x86-64.zip ]; then
   exit
 else
 # do patching here
+# remove inventory logs
+rm -f $ORACLE_BASE/oraInventory/logs/*
+
 # Replace gcc 3.4 with gcc 3.2 - root task
 mv /usr/bin/gcc /usr/bin/gcc34
 mv /usr/bin/gcc32 /usr/bin/gcc
@@ -59,10 +62,17 @@ chmod a+x ${SCRIPT_DIR}/inst_ora_sw
 # unzip; runInstaller as oracle
 su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 
-## root.sh as root
-#$ORACLE_HOME/root.sh<<EOF
-#/usr/local/bin
-#EOF
+# log checker of oracle installer
+
+until [ "$OUTPUT" = "The installation of Oracle 9iR2 Patch Set was successful." ]; do
+  OUTPUT=`grep 'The installation of Oracle 9iR2 Patch Set was successful.' $ORACLE_BASE/oraInventory/logs/silentInstall*.log`
+  sleep 5
+done
+
+# root.sh as root
+$ORACLE_HOME/root.sh<<EOF
+/usr/local/bin
+EOF
 
 # Revert gcc 3.4 from gcc 3.2
 mv /usr/bin/gcc /usr/bin/gcc32
