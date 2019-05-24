@@ -10,17 +10,17 @@ else
 fi
 
 if [ "$O_VER" = "18c" ]; then
-  #bash `dirname $0`/18c/patch.sh
+  echo "coming soon"
 elif [ "$O_VER" = "12c" ]; then
-  bash `dirname $0`/12c/patch.sh
+  echo "coming soon"
 elif [ "$O_VER" = "11.2" ]; then
-  bash `dirname $0`/11.2/patch.sh
+  echo "coming soon"
 elif [ "$O_VER" = "10.2" ]; then
-  bash `dirname $0`/10.2/patch.sh
+  echo "coming soon"
 elif [ "$O_VER" = "9.2" ]; then
-  bash `dirname $0`/9.2/9208_patch_linux.sh && $ORACLE_HOME/root.sh
+  bash `dirname $0`/9.2/9208_patch_linux.sh
 elif [ "$O_VER" = "8.1.7" ]; then
-  bash `dirname $0`/8.1.7/patch.sh
+  echo "coming soon"
 else
   echo "unknown version"
   exit 2;
