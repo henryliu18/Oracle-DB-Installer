@@ -18,7 +18,7 @@ elif [ "$O_VER" = "11.2" ]; then
 elif [ "$O_VER" = "10.2" ]; then
   echo "coming soon"
 elif [ "$O_VER" = "9.2" ]; then
-  bash `dirname $0`/9.2/9208_patch_linux.sh
+  bash `dirname $0`/9.2/9208_patch_linux.sh && $ORACLE_HOME/root.sh
 elif [ "$O_VER" = "8.1.7" ]; then
   echo "coming soon"
 else
