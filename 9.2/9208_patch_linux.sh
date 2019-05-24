@@ -43,7 +43,7 @@ mv /usr/bin/gcc /usr/bin/gcc34
 mv /usr/bin/gcc32 /usr/bin/gcc
 
 echo "mkdir $SCRIPT_DIR/9208
-cd SCRIPT_DIR/9208
+cd $SCRIPT_DIR/9208
 unzip /tmp/p4547809_92080_Linux-x86-64.zip
 $SCRIPT_DIR/9208/Disk1/runInstaller -silent -responseFile NO_VALUE \
 UNIX_GROUP_NAME=\"oinstall\"
