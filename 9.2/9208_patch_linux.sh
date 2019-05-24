@@ -63,4 +63,7 @@ su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 mv /usr/bin/gcc /usr/bin/gcc32
 mv /usr/bin/gcc34 /usr/bin/gcc
 
+# root task
+$ORACLE_HOME/root.sh
+
 fi
