@@ -48,7 +48,7 @@ unzip /tmp/p4547809_92080_Linux-x86-64.zip
 $SCRIPT_DIR/9208/Disk1/runInstaller -silent -responseFile NO_VALUE \
 UNIX_GROUP_NAME=\"oinstall\"
 FROM_LOCATION="$SCRIPT_DIR/9208/Disk1/stage/products.xml" \
-ORACLE_HOME=$ORACLE_HOME \
+ORACLE_HOME=\$ORACLE_HOME \
 ORACLE_HOME_NAME=\"OraHome92\"
 " > ${SCRIPT_DIR}/inst_ora_sw
 
