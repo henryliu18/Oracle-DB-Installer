@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #
 # Database patchset installation, run as root user
 #
@@ -10,7 +12,7 @@ else
  exit 1
 fi
 
-if [ -f $SCRIPT_DIR/p4547809_92080_Linux-x86-64.zip ]; then
+if [ ! -f $SCRIPT_DIR/p4547809_92080_Linux-x86-64.zip ]; then
   echo "patch file not found here -> $SCRIPT_DIR/p4547809_92080_Linux-x86-64.zip"
   exit
 else
