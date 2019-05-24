@@ -38,5 +38,27 @@ else
     exit 1
   else
 # do patching here
+# Replace gcc 3.4 with gcc 3.2 - root task
+mv /usr/bin/gcc /usr/bin/gcc34
+mv /usr/bin/gcc32 /usr/bin/gcc
+
+echo "mkdir /tmp/9208
+cd /tmp/9208
+unzip /tmp/p4547809_92080_Linux-x86-64.zip
+/tmp/9208/Disk1/runInstaller -silent -responseFile NO_VALUE \
+UNIX_GROUP_NAME=\"oinstall\"
+FROM_LOCATION="/tmp/9208/Disk1/stage/products.xml" \
+ORACLE_HOME=$ORACLE_HOME \
+ORACLE_HOME_NAME=\"OraHome92\"
+" > ${SCRIPT_DIR}/inst_ora_sw
+
+# Adding execute permission to all users
+chmod a+x ${SCRIPT_DIR}/inst_ora_sw
+# unzip; runInstaller as oracle
+su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
+
+# Revert gcc 3.4 from gcc 3.2
+mv /usr/bin/gcc /usr/bin/gcc32
+mv /usr/bin/gcc34 /usr/bin/gcc
   fi
 fi
