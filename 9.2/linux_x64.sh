@@ -298,20 +298,20 @@ echo "[General]
 RESPONSEFILE_VERSION=1.7.0
 
 [SESSION]
-UNIX_GROUP_NAME=oinstall
+UNIX_GROUP_NAME=\"oinstall\"
 FROM_LOCATION="$ORACLE_SW_STG/Disk1/stage/products.jar"
 ORACLE_HOME=$ORACLE_HOME
-ORACLE_HOME_NAME="OraHome92"
-TOPLEVEL_COMPONENT={"oracle.server","9.2.0.4.0"}
-NEXT_SESSION=true
-COMPONENT_LANGUAGES={"en"}
-INSTALL_TYPE="EE"
+ORACLE_HOME_NAME=\"OraHome92\"
+#TOPLEVEL_COMPONENT={"oracle.server","9.2.0.4.0"}
+#NEXT_SESSION=true
+#COMPONENT_LANGUAGES={"en"}
+#INSTALL_TYPE="EE"
 s_cfgtyperet=\"Software Only\"
-" > $SCRIPT_DIR/enterprise.rsp
+SHOW_END_SESSION_PAGE=true" > $SCRIPT_DIR/enterprise.rsp
 
 # xhost +
 
-echo "$ORACLE_SW_STG/Disk1/runInstaller -waitforcompletion -responseFile $SCRIPT_DIR/enterprise.rsp -silent" > ${SCRIPT_DIR}/inst_ora_sw2
+echo "$ORACLE_SW_STG/Disk1/runInstaller -noconsole -silent -force -waitforcompletion -responseFile $SCRIPT_DIR/enterprise.rsp" > ${SCRIPT_DIR}/inst_ora_sw2
 # Adding execute permission to all users
 chmod a+x ${SCRIPT_DIR}/inst_ora_sw2
 # unzip; runInstaller as oracle
