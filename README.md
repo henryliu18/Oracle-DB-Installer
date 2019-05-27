@@ -33,12 +33,12 @@ Oracle  10.2 on CentOS 5.5 fully tested OK!<br />
 Oracle  11.2 on CentOS 7.6 fully tested OK!<br />
 -Oracle 11.2 zip<br />
 -Internet for yum repos<br />
--Git<br />
+-git clone https://github.com/henryliu18/Oracle-DB-Installer.git<br />
 <br />
 Oracle  12.1 on CentOS 7.6 fully tested OK!<br />
 -Oracle 12c zip<br />
 -Internet for yum repos<br />
--Git<br />
+-git clone https://github.com/henryliu18/Oracle-DB-Installer.git<br />
 <br />
 Oracle  18.1 on CentOS 7.6 fully tested OK!<br />
 -Oracle 18c zip<br />
