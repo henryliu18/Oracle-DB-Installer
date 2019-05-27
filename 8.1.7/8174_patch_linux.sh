@@ -28,7 +28,7 @@ export DISPLAY=$XMING_IP:0.0
 my_pid=$!
 
 i=0
-while   ps | grep " $my_pid ">/dev/null     # might also need  | grep -v grep  here
+while   ps | grep $my_pid>/dev/null     # might also need  | grep -v grep  here
 do
     i=$((i+1))
     #echo $my_pid is still in the ps output. Must still be running "$i".
