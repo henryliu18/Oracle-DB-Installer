@@ -17,7 +17,7 @@ Oracle 8.1.7 on Redhat 6.2 (Zoot) fully tested OK!<br />
 -Sun JDK 1.2.2 zip<br />
 -XMING on pc<br />
 -RedHat 6.2 iso mounted to /mnt<br />
--Oracle-DB-Installer zip from Git<br />
+-<a href="https://github.com/henryliu18/Oracle-DB-Installer/archive/master.zip">Oracle-DB-Installer zip from Git</a><br />
 
 Oracle   9.2 on CentOS 4.7 fully tested OK!<br />
 -Oracle 9i zip<br />
