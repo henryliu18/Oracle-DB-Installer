@@ -23,12 +23,12 @@ Oracle   9.2 on CentOS 4.7 fully tested OK!<br />
 -Oracle 9i zip<br />
 -XMING on pc<br />
 -Internet for yum repos<br />
--Oracle-DB-Installer zip from Git<br />
+-<a href="https://github.com/henryliu18/Oracle-DB-Installer/archive/master.zip">Oracle-DB-Installer zip from Git</a><br />
 <br />
 Oracle  10.2 on CentOS 5.5 fully tested OK!<br />
 -Oracle 10.2 zip<br />
 -Internet for yum repos<br />
--Oracle-DB-Installer zip from Git<br />
+-<a href="https://github.com/henryliu18/Oracle-DB-Installer/archive/master.zip">Oracle-DB-Installer zip from Git</a><br />
 
 Oracle  11.2 on CentOS 7.6 fully tested OK!<br />
 -Oracle 11.2 zip<br />
