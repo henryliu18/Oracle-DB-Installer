@@ -13,6 +13,11 @@ else
  exit 1
 fi
 
+# Source function.sh
+source function.sh
+#num_lines=$( lines_in_file $1 )
+#echo The file $1 has $num_lines lines in it.
+
 echo "# CentOS-Base.repo
 #
 # This file uses a new mirrorlist system developed by Lance Davis for CentOS.
