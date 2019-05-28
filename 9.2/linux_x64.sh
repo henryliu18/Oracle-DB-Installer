@@ -23,8 +23,12 @@ source function.sh
 #echo The file $1 has $num_lines lines in it.
 
 
-if xming_check ; then echo "good to go"; else echo "nopes"; fi
-exit 1
+if xming_check ; then
+  echo "good to go"
+else
+  echo "nopes"
+fi
+
 
 echo "# CentOS-Base.repo
 #
