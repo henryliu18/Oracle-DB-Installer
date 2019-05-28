@@ -87,14 +87,7 @@ PATH=$JAVA_HOME/bin:$ORACLE_HOME/bin:$PATH
 export ORACLE_HOME PATH" >> /home/$O_USER/.bashrc
 
 #Create directories for software and database
-mkdir -p $ORACLE_HOME
-mkdir -p $ORACLE_DB/data001
-mkdir -p $ORACLE_DB/dbfra001
-mkdir -p $ORACLE_DB/redo001
-mkdir -p $ORACLE_DB/redo002
-
-chown -R $O_USER:oinstall $ORACLE_BASE $ORACLE_DB
-chmod -R 775 $ORACLE_BASE $ORACLE_DB
+cr_directories
 
 #echo "oracle soft nofile 65536
 #oracle hard nofile 65536
