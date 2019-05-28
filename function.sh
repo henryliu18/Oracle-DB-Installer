@@ -2,6 +2,16 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
+gcc32 () {
+mv /usr/bin/gcc /usr/bin/gcc34
+mv /usr/bin/gcc32 /usr/bin/gcc
+}
+
+gcc34 () {
+mv /usr/bin/gcc /usr/bin/gcc32
+mv /usr/bin/gcc34 /usr/bin/gcc
+}
+
 cr_directories () {
 mkdir -p $ORACLE_HOME
 mkdir -p $ORACLE_DB/data001
