@@ -63,8 +63,7 @@ $O_PASS
 EOF
 
 # Only if firewall is on
-/etc/rc.d/init.d/ipchains stop
-chkconfig ipchains off
+ipchains_off
 
 if [ -f "$JAVA_SW" ]; then
   cd /usr/local
