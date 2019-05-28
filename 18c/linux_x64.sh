@@ -126,8 +126,7 @@ SELINUXTYPE=targeted" > /etc/selinux/config
 setenforce Permissive
 
 #Stop and disable firewalld
-systemctl stop firewalld
-systemctl disable firewalld
+firewall_off
 
 #Create directories for software and database
 mkdir -p $ORACLE_HOME
