@@ -23,33 +23,9 @@ source ../function.sh
 #echo The file $1 has $num_lines lines in it.
 
 
-# XMING checks
-export DISPLAY=$XMING_IP:0.0
-(xdpyinfo>/tmp/xtest 2>&1) &
-my_pid=$!
+if xming_check ; then echo "good to go"; else echo "nopes"; fi
+exit 1
 
-i=0
-while   ps | grep $my_pid>/dev/null     # might also need  | grep -v grep  here
-do
-    i=$((i+1))
-    #echo $my_pid is still in the ps output. Must still be running "$i".
-    sleep 2
-    if [ $i -eq 3 ]; then
-      #echo "timeout killing $my_pid"
-      timeout=yes
-      kill -9 $my_pid
-    fi
-done
-
-if [ "$timeout" = "yes" ]; then
-  echo "exiting, check XMING or firewall or X0.hosts file"
-  exit 1
-else
-  value=$( grep -ic "refused" /tmp/xtest )
-  if [ "$value" -eq 1 ]; then
-    echo "exiting, check XMING or firewall or X0.hosts file"
-    exit 1
-  else
 echo "# CentOS-Base.repo
 #
 # CentOS-4 is past End of Life ... use at your own risk
@@ -353,5 +329,3 @@ rm -f ${SCRIPT_DIR}/inst_ora_sw
 rm -f ${SCRIPT_DIR}/inst_ora_sw2
 rm -f ${SCRIPT_DIR}/enterprise.rsp
 rm -rf $ORACLE_SW_STG
-fi
-fi
