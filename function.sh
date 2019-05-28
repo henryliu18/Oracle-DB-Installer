@@ -2,6 +2,21 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
+iptables_off () {
+/etc/init.d/iptables stop
+chkconfig iptables off
+}
+
+ipchains_off () {
+/etc/rc.d/init.d/ipchains stop
+chkconfig ipchains off
+}
+
+firewall_off () {
+systemctl stop firewalld
+systemctl disable firewalld
+}
+
 xming_check () {
 # XMING checks
 export DISPLAY=$XMING_IP:0.0
