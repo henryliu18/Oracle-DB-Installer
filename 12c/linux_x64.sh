@@ -13,6 +13,11 @@ else
  exit 1
 fi
 
+# Source function.sh
+source function.sh
+#num_lines=$( lines_in_file $1 )
+#echo The file $1 has $num_lines lines in it.
+
 #/etc/hosts configuration
 echo "`ip -f inet addr show $NIC | grep -Po 'inet \K[\d.]+'` `hostname`" >> /etc/hosts
 
