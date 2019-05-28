@@ -134,14 +134,7 @@ setenforce Permissive
 firewall_off
 
 #Create directories for software and database
-mkdir -p $ORACLE_HOME
-mkdir -p $ORACLE_DB/data001
-mkdir -p $ORACLE_DB/dbfra001
-mkdir -p $ORACLE_DB/redo001
-mkdir -p $ORACLE_DB/redo002
-
-chown -R $O_USER:oinstall $ORACLE_APP_ROOT $ORACLE_DB
-chmod -R 775 $ORACLE_APP_ROOT $ORACLE_DB
+cr_directories
 
 #.bash_profile
 echo "# Oracle Settings
