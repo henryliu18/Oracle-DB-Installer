@@ -24,12 +24,6 @@ source function.sh
 
 
 if xming_check ; then
-  echo "good to go"
-else
-  echo "nopes"
-fi
-
-
 echo "# CentOS-Base.repo
 #
 # CentOS-4 is past End of Life ... use at your own risk
@@ -333,3 +327,6 @@ rm -f ${SCRIPT_DIR}/inst_ora_sw
 rm -f ${SCRIPT_DIR}/inst_ora_sw2
 rm -f ${SCRIPT_DIR}/enterprise.rsp
 rm -rf $ORACLE_SW_STG
+else
+  echo "xming check failed"
+fi
