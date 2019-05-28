@@ -2,6 +2,119 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
+yum_repo () {
+if [ "$1" = "CentOS-4" ]; then
+  echo "# CentOS-Base.repo
+#
+# CentOS-4 is past End of Life ... use at your own risk
+#
+[base]
+name=CentOS-$releasever - Base
+baseurl=http://vault.centos.org/4.7/os/\$basearch/
+gpgcheck=1
+gpgkey=http://vault.centos.org/RPM-GPG-KEY-centos4
+protect=1
+priority=1
+#released updates 
+[update]
+name=CentOS-$releasever - Updates
+baseurl=http://vault.centos.org/4.7/updates/\$basearch/
+gpgcheck=1
+gpgkey=http://vault.centos.org/RPM-GPG-KEY-centos4
+protect=1
+priority=1
+#packages used/produced in the build but not released
+[addons]
+name=CentOS-$releasever - Addons
+baseurl=http://vault.centos.org/4.7/addons/\$basearch/
+gpgcheck=1
+gpgkey=http://vault.centos.org/RPM-GPG-KEY-centos4
+protect=1
+priority=1
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+baseurl=http://vault.centos.org/4.7/extras/\$basearch/
+gpgcheck=1
+gpgkey=http://vault.centos.org/RPM-GPG-KEY-centos4
+protect=1
+priority=1
+#additional packages that extend functionality of existing packages
+[centosplus]
+name=CentOS-$releasever - Plus
+baseurl=http://vault.centos.org/4.7/centosplus/\$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=http://vault.centos.org/RPM-GPG-KEY-centos4
+protect=1
+priority=2
+#contrib - packages by Centos Users
+[contrib]
+name=CentOS-$releasever - Contrib
+baseurl=http://vault.centos.org/4.7/contrib/\$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=http://vault.centos.org/RPM-GPG-KEY-centos4
+protect=1
+priority=2" > /etc/yum.repos.d/CentOS-Base.repo
+elif [ "$1" = "CentOS-5" ]; then
+  echo "# CentOS-Base.repo
+#
+# This file uses a new mirrorlist system developed by Lance Davis for CentOS.
+# The mirror system uses the connecting IP address of the client and the
+# update status of each mirror to pick mirrors that are updated to and
+# geographically close to the client.  You should use this for CentOS updates
+# unless you are manually picking other mirrors.
+#
+# If the mirrorlist= does not work for you, as a fall back you can try the
+# remarked out baseurl= line instead.
+#
+#
+[base]
+name=CentOS-$releasever - Base
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os
+#baseurl=http://mirror.centos.org/centos/\$releasever/os/\$basearch/
+baseurl=http://vault.centos.org/5.5/os/\$basearch/
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5
+#released updates
+[updates]
+name=CentOS-$releasever - Updates
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates
+#baseurl=http://mirror.centos.org/centos/\$releasever/updates/\$basearch/
+baseurl=http://vault.centos.org/5.5/updates/\$basearch/
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5
+#packages used/produced in the build but not released
+[addons]
+name=CentOS-$releasever - Addons
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=addons
+#baseurl=http://mirror.centos.org/centos/\$releasever/addons/\$basearch/
+baseurl=http://vault.centos.org/5.5/addons/\$basearch/
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras
+#baseurl=http://mirror.centos.org/centos/\$releasever/extras/\$basearch/
+baseurl=http://vault.centos.org/5.5/extras/\$basearch/
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5
+#additional packages that extend functionality of existing packages
+[centosplus]
+name=CentOS-$releasever - Plus
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=centosplus
+#baseurl=http://mirror.centos.org/centos/\$releasever/centosplus/\$basearch/
+baseurl=http://vault.centos.org/5.5/centosplus/\$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5" > /etc/yum.repos.d/CentOS-Base.repo
+else
+  echo version unknown
+fi
+}
+
 kernel_params () {
 if [ "$1" = "8.1.7" ]; then
   echo nothing here
