@@ -258,12 +258,10 @@ chmod a+x ${SCRIPT_DIR}/inst_ora_sw
 su - $O_USER -c ${SCRIPT_DIR}/inst_ora_sw
 
 # Replace gcc 3.4 with gcc 3.2 - root task
-mv /usr/bin/gcc /usr/bin/gcc34
-mv /usr/bin/gcc32 /usr/bin/gcc
+gcc32
 
 # create /etc/oraInst.loc as root
-echo "inventory_loc=$ORACLE_BASE/oraInventory
-inst_group=oinstall" > /etc/oraInst.loc
+cr_orsinst
 
 # responseFile creation
 echo "[General]
@@ -311,8 +309,7 @@ $ORACLE_HOME/root.sh<<EOF
 EOF
 
 # Revert gcc 3.4 from gcc 3.2
-mv /usr/bin/gcc /usr/bin/gcc32
-mv /usr/bin/gcc34 /usr/bin/gcc
+gcc34
 
 # cleanup
 rm -f ${SCRIPT_DIR}/inst_ora_sw
