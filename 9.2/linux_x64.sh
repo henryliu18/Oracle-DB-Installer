@@ -18,7 +18,7 @@ else
 fi
 
 # Source function.sh
-source ../function.sh
+source function.sh
 #num_lines=$( lines_in_file $1 )
 #echo The file $1 has $num_lines lines in it.
 
