@@ -17,6 +17,12 @@ else
  exit 1
 fi
 
+# Source function.sh
+source ../function.sh
+num_lines=$( lines_in_file /etc/passwd )
+echo The file $1 has $num_lines lines in it.
+exit 1
+
 # XMING checks
 export DISPLAY=$XMING_IP:0.0
 (xdpyinfo>/tmp/xtest 2>&1) &
