@@ -19,9 +19,9 @@ fi
 
 # Source function.sh
 source ../function.sh
-num_lines=$( lines_in_file /etc/passwd )
-echo The file $1 has $num_lines lines in it.
-exit 1
+#num_lines=$( lines_in_file $1 )
+#echo The file $1 has $num_lines lines in it.
+
 
 # XMING checks
 export DISPLAY=$XMING_IP:0.0
