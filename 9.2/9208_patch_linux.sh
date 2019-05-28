@@ -12,6 +12,11 @@ else
  exit 1
 fi
 
+# Source function.sh
+source function.sh
+#num_lines=$( lines_in_file $1 )
+#echo The file $1 has $num_lines lines in it.
+
 if [ ! -f $SCRIPT_DIR/p4547809_92080_Linux-x86-64.zip ]; then
   echo "patch file not found here -> $SCRIPT_DIR/p4547809_92080_Linux-x86-64.zip"
   exit
@@ -21,8 +26,7 @@ else
 rm -f $ORACLE_BASE/oraInventory/logs/*
 
 # Replace gcc 3.4 with gcc 3.2 - root task
-mv /usr/bin/gcc /usr/bin/gcc34
-mv /usr/bin/gcc32 /usr/bin/gcc
+gcc32
 
 echo "RESPONSEFILE_VERSION=2.2.1.0.0
 UNIX_GROUP_NAME=\"oinstall\"
@@ -75,7 +79,6 @@ $ORACLE_HOME/root.sh<<EOF
 EOF
 
 # Revert gcc 3.4 from gcc 3.2
-mv /usr/bin/gcc /usr/bin/gcc32
-mv /usr/bin/gcc34 /usr/bin/gcc
+gcc34
 
 fi
