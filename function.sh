@@ -2,6 +2,17 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
+cr_directories () {
+mkdir -p $ORACLE_HOME
+mkdir -p $ORACLE_DB/data001
+mkdir -p $ORACLE_DB/dbfra001
+mkdir -p $ORACLE_DB/redo001
+mkdir -p $ORACLE_DB/redo002
+
+chown -R $O_USER:oinstall $ORACLE_BASE $ORACLE_DB
+chmod -R 775 $ORACLE_BASE $ORACLE_DB
+}
+
 iptables_off () {
 /etc/init.d/iptables stop
 chkconfig iptables off
