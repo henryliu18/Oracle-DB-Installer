@@ -41,33 +41,12 @@ else
  exit 1
 fi
 
-# XMING checks
-export DISPLAY=$XMING_IP:0.0
-(xdpyinfo>/tmp/xtest 2>&1) &
-my_pid=$!
+# Source function.sh
+source function.sh
+#num_lines=$( lines_in_file $1 )
+#echo The file $1 has $num_lines lines in it.
 
-i=0
-while   ps | grep $my_pid>/dev/null     # might also need  | grep -v grep  here
-do
-    i=$((i+1))
-    #echo $my_pid is still in the ps output. Must still be running "$i".
-    sleep 2
-    if [ $i -eq 3 ]; then
-      #echo "timeout killing $my_pid"
-      timeout=yes
-      kill -9 $my_pid
-    fi
-done
-
-if [ "$timeout" = "yes" ]; then
-  echo "exiting, check XMING or firewall or X0.hosts file"
-  exit 1
-else
-  value=$( grep -ic "refused" /tmp/xtest )
-  if [ "$value" -eq 1 ]; then
-    echo "exiting, check XMING or firewall or X0.hosts file"
-    exit 1
-  else
+if xming_check ; then
 #
 # Database software installation, run as root user
 #
@@ -148,6 +127,7 @@ chmod a+x $SCRIPT_DIR/inst_ora_sw
 
 # unzip; set DISPLAY; runInstaller as oracle
 su - $O_USER -c $SCRIPT_DIR/inst_ora_sw
+else
+  echo "xming check failed"
+fi
 
-fi
-fi
