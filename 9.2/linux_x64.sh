@@ -101,8 +101,7 @@ net.ipv4.ip_local_port_range = 1024 65000" >> /etc/sysctl.conf
 
 sysctl -p
 
-/etc/init.d/iptables stop
-chkconfig iptables off
+iptables_off
 
 # SELinux should be disabled
 echo "# This file controls the state of SELinux on the system.
