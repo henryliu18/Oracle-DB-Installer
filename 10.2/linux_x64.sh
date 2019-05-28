@@ -87,8 +87,7 @@ net.core.wmem_max = 262144" >> /etc/sysctl.conf
 
 sysctl -p
 
-/etc/init.d/iptables stop
-chkconfig iptables off
+iptables_off
 
 # SELinux should be disabled
 echo "# This file controls the state of SELinux on the system.
