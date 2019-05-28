@@ -81,16 +81,7 @@ echo "`ip route get 1 | awk '{print $NF;exit}'` `hostname`" >> /etc/hosts
 
 
 # Kernel parameters tuning
-echo "kernel.shmmni = 4096
-kernel.sem = 250 32000 100 128
-fs.file-max = 101365
-net.ipv4.ip_local_port_range = 9000 65500
-net.core.rmem_default = 1048576
-net.core.rmem_max = 1048576
-net.core.wmem_default = 262144
-net.core.wmem_max = 262144" >> /etc/sysctl.conf
-
-sysctl -p
+kernel_params $O_VER
 
 iptables_off
 
