@@ -12,6 +12,11 @@ mv /usr/bin/gcc /usr/bin/gcc32
 mv /usr/bin/gcc34 /usr/bin/gcc
 }
 
+cr_orsinst () {
+echo "inventory_loc=$ORACLE_BASE/oraInventory
+inst_group=oinstall" > /etc/oraInst.loc
+}
+
 cr_directories () {
 mkdir -p $ORACLE_HOME
 mkdir -p $ORACLE_DB/data001
