@@ -88,18 +88,8 @@ priority=2" > /etc/yum.repos.d/CentOS-Base.repo
 #/etc/hosts configuration
 echo "`ip route get 1 | awk '{print $NF;exit}'` `hostname`" >> /etc/hosts
 
-
 # Kernel parameters tuning
-echo "kernel.sem = 250 32000 100 128
-kernel.shmmax = 2147483648
-kernel.shmmni = 128
-kernel.shmall = 2097152
-kernel.msgmnb = 65536
-kernel.msgmni = 2878
-fs.file-max = 65536
-net.ipv4.ip_local_port_range = 1024 65000" >> /etc/sysctl.conf
-
-sysctl -p
+kernel_params $O_VER
 
 iptables_off
 
