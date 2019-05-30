@@ -262,7 +262,13 @@ else
     #echo "exiting, check XMING or firewall or X0.hosts file"
     return 1
   else
-    return 0
+    value=$( grep -ic "unable" /tmp/xtest )
+    if [ "$value" -eq 1 ]; then
+      #echo "exiting, check XMING or firewall or X0.hosts file"
+      return 1
+    else
+      return 0
+    fi
   fi
 fi
 }
