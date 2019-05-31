@@ -93,21 +93,7 @@ firewall_off
 cr_directories
 
 #.bash_profile
-echo "# Oracle Settings
-TMP=/tmp; export TMP
-TMPDIR=$TMP; export TMPDIR
-
-export ORACLE_HOSTNAME=`hostname`
-ORACLE_UNQNAME=$CDB; export ORACLE_UNQNAME
-export ORACLE_BASE=$ORACLE_BASE
-export ORACLE_HOME=$ORACLE_HOME
-ORACLE_SID=$CDB; export ORACLE_SID
-ORACLE_TERM=xterm; export ORACLE_TERM
-export PATH=/usr/sbin:/usr/local/bin:\$PATH
-export PATH=$ORACLE_HOME/bin:\$PATH
-
-LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib; export LD_LIBRARY_PATH
-CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH" >> /home/$O_USER/.bash_profile
+cr_profile $O_VER
 
 # Create a shell script to unzip and runInstaller
 echo "mkdir $ORACLE_SW_STG
