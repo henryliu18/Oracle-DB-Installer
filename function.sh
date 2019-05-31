@@ -2,6 +2,101 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
+cr_profile () {
+if [ "$1" = "8.1.7" ]; then
+  echo "unset USERNAME
+ORACLE_BASE=$ORACLE_BASE
+JAVA_HOME=$JAVA_HOME
+LC_ALL=C
+LANG=C
+NLS_LANG=American_America.UTF8
+ORA_NLS33=$ORACLE_HOME/ocommon/nls/admin/data
+export ORACLE_BASE JAVA_HOME LC_ALL LANG NLS_LANG ORA_NLS33
+ORACLE_HOME=$ORACLE_HOME
+PATH=$JAVA_HOME/bin:$ORACLE_HOME/bin:$PATH
+export ORACLE_HOME PATH" >> /home/$O_USER/.bashrc
+elif [ "$1" = "9.2" ]; then
+  echo "# Oracle 9i
+ORACLE_BASE=$ORACLE_BASE; export ORACLE_BASE
+ORACLE_HOME=$ORACLE_HOME; export ORACLE_HOME
+ORACLE_TERM=xterm; export ORACLE_TERM
+PATH=$ORACLE_HOME/bin:$PATH; export PATH
+ORACLE_OWNER=$O_USER; export ORACLE_OWNER
+ORACLE_SID=$CDB; export ORACLE_SID
+LD_LIBRARY_PATH=$ORACLE_HOME/lib; export LD_LIBRARY_PATH
+CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
+CLASSPATH=$CLASSPATH:$ORACLE_HOME/network/jlib; export CLASSPATH
+LD_ASSUME_KERNEL=2.4.1; export LD_ASSUME_KERNEL
+THREADS_FLAG=native; export THREADS_FLAG
+TMP=/tmp; export TMP
+TMPDIR=\$TMP; export TMPDIR" >> /home/$O_USER/.bash_profile
+elif [ "$1" = "10.2" ]; then
+  echo "export PATH
+export ORACLE_BASE=$ORACLE_BASE
+export ORACLE_HOME=$ORACLE_HOME
+export ORACLE_SID=$CDB
+export ORACLE_TERM=xterm
+export PATH=$ORACLE_HOME/bin:/usr/sbin:$PATH
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
+export CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
+#export LD_LIBRARY_PATH CLASSPATH
+if [ $USER = "$O_USER" ]; then
+  if [ $SHELL = "/bin/ksh" ];then
+    ulimit -p 16384
+    ulimit -n 65536
+  else
+    ulimit -u 16384 -n 65536
+  fi
+fi" >> /home/$O_USER/.bash_profile
+elif [ "$1" = "11.2" ]; then
+  echo "# Oracle Settings
+TMP=/tmp; export TMP
+TMPDIR=$TMP; export TMPDIR
+export ORACLE_HOSTNAME=`hostname`
+ORACLE_UNQNAME=$CDB; export ORACLE_UNQNAME
+export ORACLE_BASE=$ORACLE_BASE
+export ORACLE_HOME=$ORACLE_HOME
+ORACLE_SID=$CDB; export ORACLE_SID
+ORACLE_TERM=xterm; export ORACLE_TERM
+export PATH=/usr/sbin:/usr/local/bin:\$PATH
+export PATH=$ORACLE_HOME/bin:\$PATH
+LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib; export LD_LIBRARY_PATH
+CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH" >> /home/$O_USER/.bash_profile
+elif [ "$1" = "12c" ]; then
+  echo "# Oracle Settings
+export TMP=/tmp
+export TMPDIR=\$TMP
+export ORACLE_HOSTNAME=`hostname`
+export ORACLE_UNQNAME=$CDB
+export ORACLE_BASE=$ORACLE_BASE
+export ORACLE_HOME=$ORACLE_HOME
+export ORA_INVENTORY=$ORACLE_APP_ROOT/oraInventory
+export ORACLE_SID=$CDB
+export PDB_NAME=$PDB
+export PATH=/usr/sbin:/usr/local/bin:\$PATH
+export PATH=$ORACLE_HOME/bin:\$PATH
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
+export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib" >> /home/$O_USER/.bash_profile
+elif [ "$1" = "18c" ]; then
+  echo "# Oracle Settings
+export TMP=/tmp
+export TMPDIR=\$TMP
+export ORACLE_HOSTNAME=`hostname`
+export ORACLE_UNQNAME=$CDB
+export ORACLE_BASE=$ORACLE_BASE
+export ORACLE_HOME=$ORACLE_HOME
+export ORA_INVENTORY=$ORACLE_APP_ROOT/oraInventory
+export ORACLE_SID=$CDB
+export PDB_NAME=$PDB
+export PATH=/usr/sbin:/usr/local/bin:\$PATH
+export PATH=$ORACLE_HOME/bin:\$PATH
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
+export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib" >> /home/$O_USER/.bash_profile
+else
+  echo version unknown
+fi
+}
+
 cr_user_and_groups () {
 groupadd -g 54321 oinstall
 groupadd -g 54322 dba
