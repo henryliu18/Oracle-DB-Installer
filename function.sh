@@ -2,6 +2,19 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
+cr_user_and_groups () {
+groupadd -g 54321 oinstall
+groupadd -g 54322 dba
+groupadd -g 54323 oper
+useradd -u 54321 -g oinstall -G dba,oper $O_USER
+
+#Specify oracle password
+passwd $O_USER <<EOF
+$O_PASS
+$O_PASS
+EOF
+}
+
 selinux_mode () {
 echo "# This file controls the state of SELinux on the system.
 # SELINUX= can take one of these three values:
