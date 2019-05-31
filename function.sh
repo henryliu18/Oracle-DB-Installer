@@ -2,19 +2,19 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
-selinux_disabled () {
+selinux_mode () {
 echo "# This file controls the state of SELinux on the system.
 # SELINUX= can take one of these three values:
 #       enforcing - SELinux security policy is enforced.
 #       permissive - SELinux prints warnings instead of enforcing.
 #       disabled - SELinux is fully disabled.
 #SELINUX=enforcing
-SELINUX=disabled
+SELINUX=$1
 # SELINUXTYPE= type of policy in use. Possible values are:
 #       targeted - Only targeted network daemons are protected.
 #       strict - Full SELinux protection.
 SELINUXTYPE=targeted" > /etc/selinux/config
-setenforce 0
+setenforce $1
 }
 
 yum_repo () {
