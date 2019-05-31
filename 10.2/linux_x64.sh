@@ -34,25 +34,8 @@ selinux_mode disabled
 #oracle user and groups creation
 cr_user_and_groups
 
-echo "export PATH
-export ORACLE_BASE=$ORACLE_BASE
-export ORACLE_HOME=$ORACLE_HOME
-export ORACLE_SID=$CDB
-export ORACLE_TERM=xterm
-export PATH=$ORACLE_HOME/bin:/usr/sbin:$PATH
-export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
-export CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
-
-#export LD_LIBRARY_PATH CLASSPATH
-
-if [ $USER = "$O_USER" ]; then
-  if [ $SHELL = "/bin/ksh" ];then
-    ulimit -p 16384
-    ulimit -n 65536
-  else
-    ulimit -u 16384 -n 65536
-  fi
-fi" >> /home/$O_USER/.bash_profile
+#.bash_profile
+cr_profile $O_VER
 
 #Create directories for software and database
 cr_directories
