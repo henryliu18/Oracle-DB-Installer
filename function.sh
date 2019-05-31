@@ -14,7 +14,7 @@ SELINUX=$1
 #       targeted - Only targeted network daemons are protected.
 #       strict - Full SELinux protection.
 SELINUXTYPE=targeted" > /etc/selinux/config
-setenforce $1
+setenforce 0
 }
 
 yum_repo () {
