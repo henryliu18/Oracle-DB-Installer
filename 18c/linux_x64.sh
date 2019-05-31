@@ -85,18 +85,8 @@ yum install -y unixODBC
 yum install -y unzip
 yum install -y gcc-c++
 
-#Create the new groups and users
-groupadd -g 54321 oinstall
-groupadd -g 54322 dba
-groupadd -g 54323 oper
-
-useradd -u 54321 -g oinstall -G dba,oper $O_USER
-
-#Specify oracle password
-passwd $O_USER <<EOF
-$O_PASS
-$O_PASS
-EOF
+#oracle user and groups creation
+cr_user_and_groups
 
 #Set secure Linux to permissive
 selinux_mode permissive
