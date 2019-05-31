@@ -94,7 +94,6 @@ $O_PASS
 EOF
 
 #Set secure Linux to permissive
-# SELinux should be disabled
 selinux_mode permissive
 
 #Stop and disable firewalld
