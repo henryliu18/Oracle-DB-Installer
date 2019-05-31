@@ -66,17 +66,8 @@ else
   exit 1
 fi
 
-echo "unset USERNAME
-ORACLE_BASE=$ORACLE_BASE
-JAVA_HOME=$JAVA_HOME
-LC_ALL=C
-LANG=C
-NLS_LANG=American_America.UTF8
-ORA_NLS33=$ORACLE_HOME/ocommon/nls/admin/data
-export ORACLE_BASE JAVA_HOME LC_ALL LANG NLS_LANG ORA_NLS33
-ORACLE_HOME=$ORACLE_HOME
-PATH=$JAVA_HOME/bin:$ORACLE_HOME/bin:$PATH
-export ORACLE_HOME PATH" >> /home/$O_USER/.bashrc
+#.bash_profile
+cr_profile $O_VER
 
 #Create directories for software and database
 cr_directories
