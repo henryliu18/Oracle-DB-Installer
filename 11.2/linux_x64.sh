@@ -80,18 +80,8 @@ yum install zlib-devel -y
 yum install elfutils-libelf-devel -y
 yum install -y unzip
 
-#Create the new groups and users
-groupadd -g 54321 oinstall
-groupadd -g 54322 dba
-groupadd -g 54323 oper
-
-useradd -g oinstall -G dba,oper oracle
-
-#Specify oracle password
-passwd $O_USER <<EOF
-$O_PASS
-$O_PASS
-EOF
+#oracle user and groups creation
+cr_user_and_groups
 
 #Set secure Linux to permissive
 selinux_mode permissive
