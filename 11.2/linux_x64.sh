@@ -80,34 +80,11 @@ yum install zlib-devel -y
 yum install elfutils-libelf-devel -y
 yum install -y unzip
 
-#Create the new groups and users
-groupadd -g 54321 oinstall
-groupadd -g 54322 dba
-groupadd -g 54323 oper
-
-useradd -g oinstall -G dba,oper oracle
-
-#Specify oracle password
-passwd $O_USER <<EOF
-$O_PASS
-$O_PASS
-EOF
+#oracle user and groups creation
+cr_user_and_groups
 
 #Set secure Linux to permissive
-echo "# This file controls the state of SELinux on the system.
-# SELINUX= can take one of these three values:
-#     enforcing - SELinux security policy is enforced.
-#     permissive - SELinux prints warnings instead of enforcing.
-#     disabled - No SELinux policy is loaded.
-#SELINUX=enforcing
-SELINUX=permissive
-# SELINUXTYPE= can take one of three two values:
-#     targeted - Targeted processes are protected,
-#     minimum - Modification of targeted policy. Only selected processes are protected.
-#     mls - Multi Level Security protection.
-SELINUXTYPE=targeted" > /etc/selinux/config
-
-setenforce Permissive
+selinux_mode permissive
 
 #Stop and disable firewalld
 firewall_off
@@ -116,21 +93,7 @@ firewall_off
 cr_directories
 
 #.bash_profile
-echo "# Oracle Settings
-TMP=/tmp; export TMP
-TMPDIR=$TMP; export TMPDIR
-
-export ORACLE_HOSTNAME=`hostname`
-ORACLE_UNQNAME=$CDB; export ORACLE_UNQNAME
-export ORACLE_BASE=$ORACLE_BASE
-export ORACLE_HOME=$ORACLE_HOME
-ORACLE_SID=$CDB; export ORACLE_SID
-ORACLE_TERM=xterm; export ORACLE_TERM
-export PATH=/usr/sbin:/usr/local/bin:\$PATH
-export PATH=$ORACLE_HOME/bin:\$PATH
-
-LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib; export LD_LIBRARY_PATH
-CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH" >> /home/$O_USER/.bash_profile
+cr_profile $O_VER
 
 # Create a shell script to unzip and runInstaller
 echo "mkdir $ORACLE_SW_STG

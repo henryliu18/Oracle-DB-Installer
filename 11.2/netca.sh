@@ -13,7 +13,7 @@ else
  exit 1
 fi
 
-echo "netca /silent /responsefile \$ORACLE_HOME/inventory/response/netca.rsp" > ${SCRIPT_DIR}/run_netca
+echo "netca /silent /responsefile \$ORACLE_HOME/assistants/netca/netca.rsp" > ${SCRIPT_DIR}/run_netca
 chmod a+x ${SCRIPT_DIR}/run_netca
 su - $O_USER -c ${SCRIPT_DIR}/run_netca
 rm -f ${SCRIPT_DIR}/run_netca

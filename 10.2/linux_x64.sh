@@ -23,57 +23,19 @@ yum_repo CentOS-5
 #/etc/hosts configuration
 echo "`ip route get 1 | awk '{print $NF;exit}'` `hostname`" >> /etc/hosts
 
-
 # Kernel parameters tuning
 kernel_params $O_VER
 
 iptables_off
 
 # SELinux should be disabled
-echo "# This file controls the state of SELinux on the system.
-# SELINUX= can take one of these three values:
-#       enforcing - SELinux security policy is enforced.
-#       permissive - SELinux prints warnings instead of enforcing.
-#       disabled - SELinux is fully disabled.
-#SELINUX=enforcing
-SELINUX=disabled
-# SELINUXTYPE= type of policy in use. Possible values are:
-#       targeted - Only targeted network daemons are protected.
-#       strict - Full SELinux protection.
-SELINUXTYPE=targeted" > /etc/selinux/config
+selinux_mode disabled
 
-setenforce 0
+#oracle user and groups creation
+cr_user_and_groups
 
-groupadd -g 54321 oinstall
-groupadd -g 54322 dba
-groupadd -g 54323 oper
-useradd -u 54321 -g oinstall -G dba,oper $O_USER
-
-#Specify oracle password
-passwd $O_USER <<EOF
-$O_PASS
-$O_PASS
-EOF
-
-echo "export PATH
-export ORACLE_BASE=$ORACLE_BASE
-export ORACLE_HOME=$ORACLE_HOME
-export ORACLE_SID=$CDB
-export ORACLE_TERM=xterm
-export PATH=$ORACLE_HOME/bin:/usr/sbin:$PATH
-export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
-export CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
-
-#export LD_LIBRARY_PATH CLASSPATH
-
-if [ $USER = "$O_USER" ]; then
-  if [ $SHELL = "/bin/ksh" ];then
-    ulimit -p 16384
-    ulimit -n 65536
-  else
-    ulimit -u 16384 -n 65536
-  fi
-fi" >> /home/$O_USER/.bash_profile
+#.bash_profile
+cr_profile $O_VER
 
 #Create directories for software and database
 cr_directories

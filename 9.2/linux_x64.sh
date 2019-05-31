@@ -36,47 +36,13 @@ kernel_params $O_VER
 iptables_off
 
 # SELinux should be disabled
-echo "# This file controls the state of SELinux on the system.
-# SELINUX= can take one of these three values:
-#       enforcing - SELinux security policy is enforced.
-#       permissive - SELinux prints warnings instead of enforcing.
-#       disabled - SELinux is fully disabled.
-#SELINUX=enforcing
-SELINUX=disabled
-# SELINUXTYPE= type of policy in use. Possible values are:
-#       targeted - Only targeted network daemons are protected.
-#       strict - Full SELinux protection.
-SELINUXTYPE=targeted" > /etc/selinux/config
+selinux_mode disabled
 
-setenforce 0
+#oracle user and groups creation
+cr_user_and_groups
 
-groupadd -g 54321 oinstall
-groupadd -g 54322 dba
-groupadd -g 54323 oper
-useradd -u 54321 -g oinstall -G dba,oper $O_USER
-
-#Specify oracle password
-passwd $O_USER <<EOF
-$O_PASS
-$O_PASS
-EOF
-
-echo "# Oracle 9i
-ORACLE_BASE=$ORACLE_BASE; export ORACLE_BASE
-ORACLE_HOME=$ORACLE_HOME; export ORACLE_HOME
-ORACLE_TERM=xterm; export ORACLE_TERM
-PATH=$ORACLE_HOME/bin:$PATH; export PATH
-ORACLE_OWNER=$O_USER; export ORACLE_OWNER
-ORACLE_SID=$CDB; export ORACLE_SID
-
-LD_LIBRARY_PATH=$ORACLE_HOME/lib; export LD_LIBRARY_PATH
-CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
-CLASSPATH=$CLASSPATH:$ORACLE_HOME/network/jlib; export CLASSPATH
-
-LD_ASSUME_KERNEL=2.4.1; export LD_ASSUME_KERNEL
-THREADS_FLAG=native; export THREADS_FLAG
-TMP=/tmp; export TMP
-TMPDIR=\$TMP; export TMPDIR" >> /home/$O_USER/.bash_profile
+#.bash_profile
+cr_profile $O_VER
 
 #Create directories for software and database
 cr_directories
