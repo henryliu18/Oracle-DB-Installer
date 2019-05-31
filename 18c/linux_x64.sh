@@ -98,23 +98,7 @@ firewall_off
 cr_directories
 
 #.bash_profile
-echo "# Oracle Settings
-export TMP=/tmp
-export TMPDIR=\$TMP
-
-export ORACLE_HOSTNAME=`hostname`
-export ORACLE_UNQNAME=$CDB
-export ORACLE_BASE=$ORACLE_BASE
-export ORACLE_HOME=$ORACLE_HOME
-export ORA_INVENTORY=$ORACLE_APP_ROOT/oraInventory
-export ORACLE_SID=$CDB
-export PDB_NAME=$PDB
-
-export PATH=/usr/sbin:/usr/local/bin:\$PATH
-export PATH=$ORACLE_HOME/bin:\$PATH
-
-export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib
-export CLASSPATH=$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib" >> /home/$O_USER/.bash_profile
+cr_profile $O_VER
 
 # Create a shell script to unzip and runInstaller
 echo "cd $ORACLE_HOME
