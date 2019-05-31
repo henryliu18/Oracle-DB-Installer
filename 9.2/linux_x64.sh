@@ -41,22 +41,8 @@ selinux_mode disabled
 #oracle user and groups creation
 cr_user_and_groups
 
-echo "# Oracle 9i
-ORACLE_BASE=$ORACLE_BASE; export ORACLE_BASE
-ORACLE_HOME=$ORACLE_HOME; export ORACLE_HOME
-ORACLE_TERM=xterm; export ORACLE_TERM
-PATH=$ORACLE_HOME/bin:$PATH; export PATH
-ORACLE_OWNER=$O_USER; export ORACLE_OWNER
-ORACLE_SID=$CDB; export ORACLE_SID
-
-LD_LIBRARY_PATH=$ORACLE_HOME/lib; export LD_LIBRARY_PATH
-CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib
-CLASSPATH=$CLASSPATH:$ORACLE_HOME/network/jlib; export CLASSPATH
-
-LD_ASSUME_KERNEL=2.4.1; export LD_ASSUME_KERNEL
-THREADS_FLAG=native; export THREADS_FLAG
-TMP=/tmp; export TMP
-TMPDIR=\$TMP; export TMPDIR" >> /home/$O_USER/.bash_profile
+#.bash_profile
+cr_profile $O_VER
 
 #Create directories for software and database
 cr_directories
