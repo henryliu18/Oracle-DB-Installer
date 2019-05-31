@@ -338,7 +338,7 @@ mkdir -p $ORACLE_DB/dbfra001
 mkdir -p $ORACLE_DB/redo001
 mkdir -p $ORACLE_DB/redo002
 
-chown -R $O_USER:oinstall $ORACLE_BASE $ORACLE_DB
+chown -R $O_USER:oinstall $ORACLE_APP_ROOT $ORACLE_BASE $ORACLE_DB
 chmod -R 775 $ORACLE_APP_ROOT $ORACLE_BASE $ORACLE_DB
 }
 
