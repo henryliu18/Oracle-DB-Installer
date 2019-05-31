@@ -30,19 +30,7 @@ kernel_params $O_VER
 iptables_off
 
 # SELinux should be disabled
-echo "# This file controls the state of SELinux on the system.
-# SELINUX= can take one of these three values:
-#       enforcing - SELinux security policy is enforced.
-#       permissive - SELinux prints warnings instead of enforcing.
-#       disabled - SELinux is fully disabled.
-#SELINUX=enforcing
-SELINUX=disabled
-# SELINUXTYPE= type of policy in use. Possible values are:
-#       targeted - Only targeted network daemons are protected.
-#       strict - Full SELinux protection.
-SELINUXTYPE=targeted" > /etc/selinux/config
-
-setenforce 0
+selinux_disabled
 
 groupadd -g 54321 oinstall
 groupadd -g 54322 dba
