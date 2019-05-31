@@ -36,7 +36,7 @@ kernel_params $O_VER
 iptables_off
 
 # SELinux should be disabled
-selinux_disabled
+selinux_mode disabled
 
 groupadd -g 54321 oinstall
 groupadd -g 54322 dba
