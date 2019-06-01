@@ -2,13 +2,13 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
-check_rpm () {
-if [[ `rpm -q $1` == "$1"* ]]; then
-  return 0
-else
-  return 1
+install_if_not_found () {
+yum list installed $1>/dev/null
+if [ "$?" -ne 0 ]; then
+  yum install -y $1
 fi
 }
+
 
 cr_profile () {
 if [ "$1" = "8.1.7" ]; then
