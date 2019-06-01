@@ -2,6 +2,14 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
+check_rpm () {
+if [[ `rpm -q $1` == "$1"* ]]; then
+  return 0
+else
+  return 1
+fi
+}
+
 cr_profile () {
 if [ "$1" = "8.1.7" ]; then
   echo "unset USERNAME
