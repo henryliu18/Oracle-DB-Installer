@@ -2,6 +2,14 @@ lines_in_file () {
 cat $1 | wc -l
 }
 
+wildcard_str () {
+if [[ $1 == *"$2"* ]]; then
+  return 0
+else
+  return 1
+fi
+}
+
 install_if_not_found () {
 yum list installed $1>/dev/null
 if [ "$?" -ne 0 ]; then
