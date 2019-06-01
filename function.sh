@@ -10,14 +10,6 @@ else
 fi
 }
 
-install_if_not_found () {
-yum list installed $1>/dev/null
-if [ "$?" -ne 0 ]; then
-  yum install -y $1
-fi
-}
-
-
 cr_profile () {
 if [ "$1" = "8.1.7" ]; then
   echo "unset USERNAME
