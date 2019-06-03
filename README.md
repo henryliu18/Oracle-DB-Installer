@@ -1,7 +1,7 @@
 # Oracle-DB-Installer
 
-1. setup env <br />
-env - collect inputs and put in env file<br />
+1. setup env 
+env - collect inputs and put in env file 
 
 2. setup sw|db|patch|clean<br />
 sw - install software only<br />
